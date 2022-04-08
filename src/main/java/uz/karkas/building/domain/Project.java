@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import uz.karkas.building.dto.project.ProjectDTO;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -14,6 +12,7 @@ import javax.persistence.Id;
 public class Project {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String titleUZ;

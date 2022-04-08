@@ -1,0 +1,21 @@
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/buildings
+    username: postgres
+    password: root123
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: swagger-ui
+  api-docs:
+    path: /api-docs
