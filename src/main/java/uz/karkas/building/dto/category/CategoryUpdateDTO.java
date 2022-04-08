@@ -13,4 +13,5 @@ public class CategoryUpdateDTO extends DTO {
     private Integer id;
     private String name;
 
+
 }
