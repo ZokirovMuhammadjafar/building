@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 import uz.karkas.building.dto.base.DTO;
 
 @Getter
@@ -11,8 +12,10 @@ import uz.karkas.building.dto.base.DTO;
 @AllArgsConstructor
 public class ProductCreateDTO extends DTO {
 
-    private String name;
-    private String description;
-    private Resource picture;
+    private String nameUZ;
+    private String nameRU;
+    private String descriptionUZ;
+    private String descriptionRU;
+    private MultipartFile picture;
 
 }
