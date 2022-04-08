@@ -9,12 +9,11 @@ import uz.karkas.building.dto.base.DTO;
 @Getter
 @Setter
 @Builder
-public class ProductDTO extends DTO {
+public class ProductUpdateDTO extends DTO {
 
     private Integer id;
     private String name;
     private String description;
     private Resource picture;
-
 
 }

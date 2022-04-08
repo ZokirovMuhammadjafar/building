@@ -1,20 +1,19 @@
-package uz.karkas.building.dto.product;
+package uz.karkas.building.dto.project;
 
+import io.github.classgraph.Resource;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.core.io.Resource;
 import uz.karkas.building.dto.base.DTO;
 
 @Getter
 @Setter
 @Builder
-public class ProductDTO extends DTO {
+public class ProjectDTO extends DTO {
 
     private Integer id;
-    private String name;
+    private String title;
     private String description;
-    private Resource picture;
-
+    private Resource picturePath;
 
 }

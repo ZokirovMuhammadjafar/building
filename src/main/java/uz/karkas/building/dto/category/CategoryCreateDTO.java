@@ -1,16 +1,15 @@
 package uz.karkas.building.dto.category;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import uz.karkas.building.dto.base.DTO;
 
 @Getter
 @Setter
-@Builder
-public class CategoryDTO extends DTO {
+@AllArgsConstructor
+public class CategoryCreateDTO extends DTO {
 
-    private Integer id;
     private String name;
 
 }
