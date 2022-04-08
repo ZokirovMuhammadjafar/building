@@ -10,6 +10,7 @@ import uz.karkas.building.dto.base.DTO;
 @AllArgsConstructor
 public class CategoryCreateDTO extends DTO {
 
-    private String name;
+    private String nameRU;
+    private String nameUZ;
 
 }

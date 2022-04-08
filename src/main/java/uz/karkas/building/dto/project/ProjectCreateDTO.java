@@ -4,6 +4,7 @@ import io.github.classgraph.Resource;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 import uz.karkas.building.dto.base.DTO;
 
 @Getter
@@ -13,6 +14,6 @@ public class ProjectCreateDTO extends DTO {
 
     private String title;
     private String description;
-    private Resource picturePath;
+    private MultipartFile picturePath;
 
 }
