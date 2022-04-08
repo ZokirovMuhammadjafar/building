@@ -1,20 +1,20 @@
 package uz.karkas.building.domain;
 
+
 import lombok.Getter;
 import lombok.Setter;
+import uz.karkas.building.dto.colleges.CollegesDTO;
 import uz.karkas.building.dto.product.ProductDTO;
 
 import javax.persistence.*;
 
-
 @Entity
 @Getter
 @Setter
-public class Product {
+public class Colleges {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String nameUZ;
 
     @Column(columnDefinition = "text")
@@ -25,15 +25,13 @@ public class Product {
     @Column(columnDefinition = "text")
     private String descriptionRU;
 
-    private Integer categoryId;
-
     private String picturePath;
 
-    public ProductDTO get(String locale){
+    public CollegesDTO get(String locale){
         if(locale.equals("uz")){
-            return  ProductDTO.builder().id(this.id).description(this.descriptionUZ).name(this.nameUZ).build();
+            return  CollegesDTO.builder().id(this.id).description(this.descriptionUZ).name(this.nameUZ).build();
         }else {
-            return ProductDTO.builder().description(this.descriptionRU).name(this.nameRU).build();
+            return CollegesDTO.builder().description(this.descriptionRU).name(this.nameRU).build();
         }
 
     }

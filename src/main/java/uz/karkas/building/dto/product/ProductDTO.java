@@ -8,7 +8,7 @@ import org.springframework.core.io.Resource;
 @Getter
 @Setter
 @Builder
-public class ProductDto {
+public class ProductDTO {
     private Integer id;
     private String name;
     private String description;
