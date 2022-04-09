@@ -18,7 +18,7 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     }
 
     @Override
-    public ResponseEntity<Data<ProjectDTO>> create(ProjectCreateDTO createDTO) {
+    public ResponseEntity<Data<Integer>> create(ProjectCreateDTO createDTO) {
         return null;
     }
 

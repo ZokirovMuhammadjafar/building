@@ -17,7 +17,7 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
     }
 
     @Override
-    public ResponseEntity<Data<CollegesDTO>> create(CollegesCreateDTO createDTO) {
+    public ResponseEntity<Data<Integer>> create(CollegesCreateDTO createDTO) {
         return null;
     }
 

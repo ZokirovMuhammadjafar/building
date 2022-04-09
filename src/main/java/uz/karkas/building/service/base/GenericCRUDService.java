@@ -14,7 +14,7 @@ public interface GenericCRUDService<
         > extends GenericService<D, K> {
 
 
-    ResponseEntity<Data<D>> create(CD createDTO);
+    ResponseEntity<Data<K>> create(CD createDTO);
 
     ResponseEntity<Data<Boolean>> update(UD updateDTO);
 

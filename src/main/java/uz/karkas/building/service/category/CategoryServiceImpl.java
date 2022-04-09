@@ -18,7 +18,7 @@ public class CategoryServiceImpl extends AbstractService<CategoryRepository, Cat
     }
 
     @Override
-    public ResponseEntity<Data<CategoryDTO>> create(CategoryCreateDTO createDTO) {
+    public ResponseEntity<Data<Integer>> create(CategoryCreateDTO createDTO) {
         return null;
     }
 

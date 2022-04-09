@@ -18,7 +18,7 @@ public class ContactServiceImpl extends AbstractService<ContactRepository, Conta
     }
 
     @Override
-    public ResponseEntity<Data<ContactDTO>> create(ContactCreateDTO createDTO) {
+    public ResponseEntity<Data<Integer>> create(ContactCreateDTO createDTO) {
         return null;
     }
 

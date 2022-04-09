@@ -1,6 +1,7 @@
 package uz.karkas.building.service.product;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import uz.karkas.building.dto.product.ProductCreateDTO;
 import uz.karkas.building.dto.product.ProductDTO;
 import uz.karkas.building.dto.product.ProductUpdateDTO;
@@ -11,6 +12,7 @@ import uz.karkas.building.validator.product.ProductValidator;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImpl extends AbstractService<ProductRepository, ProductValidator> implements ProductService {
 
 
@@ -19,7 +21,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     }
 
     @Override
-    public ResponseEntity<Data<ProductDTO>> create(ProductCreateDTO createDTO) {
+    public ResponseEntity<Data<Integer>> create(ProductCreateDTO createDTO) {
         return null;
     }
 
