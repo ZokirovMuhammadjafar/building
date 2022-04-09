@@ -1,10 +1,10 @@
 package uz.karkas.building.service.base;
 
-import uz.karkas.building.repository.AbstractRepository;
+import uz.karkas.building.repository.BaseRepository;
 import uz.karkas.building.validator.base.BaseGenericValidator;
 
 public abstract class AbstractService <
-        R extends AbstractRepository,
+        R extends BaseRepository,
         V extends BaseGenericValidator
         > implements BaseGenericService {
 
