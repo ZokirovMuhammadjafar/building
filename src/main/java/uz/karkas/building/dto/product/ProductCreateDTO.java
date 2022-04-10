@@ -1,21 +1,31 @@
 package uz.karkas.building.dto.product;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 import uz.karkas.building.dto.base.DTO;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Getter
 @Setter
-@AllArgsConstructor
 public class ProductCreateDTO extends DTO {
 
+//    @Size(min = 5,max = 50)
     private String nameUZ;
+//    @Size(min = 5,max = 50)
     private String nameRU;
+//    @Size(min = 10,max = 500)
     private String descriptionUZ;
+//    @Size(min = 10,max = 500)
     private String descriptionRU;
-    private MultipartFile picture;
+
+
+//    @NotNull
+    private Integer categoryId;
+
+    private MultipartFile photo;
 
 }

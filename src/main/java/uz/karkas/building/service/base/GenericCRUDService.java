@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import uz.karkas.building.dto.base.DTO;
 import uz.karkas.building.response.Data;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public interface GenericCRUDService<
@@ -14,7 +15,7 @@ public interface GenericCRUDService<
         > extends GenericService<D, K> {
 
 
-    ResponseEntity<Data<K>> create(CD createDTO);
+    ResponseEntity<Data<K>> create(CD createDTO) throws IOException;
 
     ResponseEntity<Data<Boolean>> update(UD updateDTO);
 

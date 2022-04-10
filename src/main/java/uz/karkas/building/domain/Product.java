@@ -2,6 +2,7 @@ package uz.karkas.building.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.karkas.building.dto.product.ProductCreateDTO;
 import uz.karkas.building.dto.product.ProductDTO;
 
 import javax.persistence.*;
@@ -27,13 +28,24 @@ public class Product {
 
     private Integer categoryId;
 
-    private String picturePath;
+    private Integer fileId;
+
+    public static Product create(ProductCreateDTO createDTO, Integer pictureId) {
+        Product product=new Product();
+        product.setCategoryId(createDTO.getCategoryId());
+        product.setDescriptionRU(createDTO.getDescriptionRU());
+        product.setDescriptionUZ(createDTO.getDescriptionUZ());
+        product.setFileId(pictureId);
+        product.setNameRU(createDTO.getNameRU());
+        product.setNameUZ(createDTO.getNameUZ());
+        return product;
+    }
 
     public ProductDTO get(String locale){
         if(locale.equals("uz")){
             return  ProductDTO.builder().id(this.id).description(this.descriptionUZ).name(this.nameUZ).build();
         }else {
-            return ProductDTO.builder().description(this.descriptionRU).name(this.nameRU).build();
+            return ProductDTO.builder().id(this.id).description(this.descriptionRU).name(this.nameRU).build();
         }
 
     }

@@ -25,7 +25,7 @@ public class Colleges {
     @Column(columnDefinition = "text")
     private String descriptionRU;
 
-    private String picturePath;
+    private Integer fileId;
 
     public CollegesDTO get(String locale){
         if(locale.equals("uz")){

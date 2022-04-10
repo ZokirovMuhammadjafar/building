@@ -25,7 +25,7 @@ public class Project {
     @Column(columnDefinition = "text")
     private String descriptionRU;
 
-    private String picturePath;
+    private Integer fileId;
 
     public ProjectDTO get(String locale){
         if(locale.equals("uz")){

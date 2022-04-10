@@ -1,5 +1,7 @@
 package uz.karkas.building.dto.base;
 
-public class DTO {
+import java.io.Serializable;
+
+public class DTO implements Serializable {
 
 }

@@ -9,10 +9,16 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         form_sql: true
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
 
 server:
   port: 8080
@@ -22,3 +28,9 @@ springdoc:
     path: swagger-ui
   api-docs:
     path: /api-docs
+
+path:
+  request: http:/
+  api: /localhost:8080
+  filePath: /uploads/building
+  urlPath: /api/v1/
