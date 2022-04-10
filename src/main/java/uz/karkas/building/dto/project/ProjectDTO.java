@@ -14,6 +14,6 @@ public class ProjectDTO extends DTO {
     private Integer id;
     private String title;
     private String description;
-    private Resource picturePath;
+    private String  url;
 
 }

@@ -14,6 +14,6 @@ public class CollegesDTO extends DTO {
     private Integer id;
     private String name;
     private String description;
-    private Resource picture;
+    private String url;
 
 }
