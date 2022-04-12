@@ -17,6 +17,7 @@ import uz.karkas.building.validator.product.ProductValidator;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl extends AbstractService<ProductRepository, ProductValidator> implements ProductService {
@@ -89,6 +90,14 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
     @Override
     public ResponseEntity<Data<List<ProductDTO>>> getAll() {
-        return null;
+        String concat = request.concat(api).concat(urlPath).concat("download/");
+        List<Product> all = repository.findAll();
+        List<ProductDTO> products = all.stream().map(a -> {
+            ProductDTO ru = a.get("ru");
+            Uploads uploads = service.get(a.getFileId());
+            ru.setUrl(concat.concat(uploads.getPathName()));
+            return ru;
+        }).collect(Collectors.toList());
+        return new ResponseEntity<>(new Data<>(products),HttpStatus.OK);
     }
 }

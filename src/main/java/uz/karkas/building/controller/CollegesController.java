@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import uz.karkas.building.dto.colleges.CollegesCreateDTO;
 import uz.karkas.building.dto.colleges.CollegesDTO;
 import uz.karkas.building.dto.colleges.CollegesUpdateDTO;
-import uz.karkas.building.dto.project.ProjectDTO;
 import uz.karkas.building.response.Data;
 import uz.karkas.building.service.colleges.CollegesServiceImpl;
 
