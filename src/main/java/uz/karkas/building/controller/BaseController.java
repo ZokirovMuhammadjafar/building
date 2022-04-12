@@ -12,7 +12,7 @@ import uz.karkas.building.service.base.FileService;
 public abstract class BaseController<D extends BaseGenericService> {
 
     protected final D service;
-    protected final FileService fileService;
+
 
 
 

@@ -1,10 +1,21 @@
 package uz.karkas.building.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import uz.karkas.building.domain.Colleges;
+import uz.karkas.building.dto.colleges.CollegesUpdateDTO;
+
+import javax.transaction.Transactional;
 
 public interface CollegesRepository extends JpaRepository<Colleges, Integer>, BaseRepository {
 
 
+    @Modifying
+    @Query(value = "update colleges set descriptionuz = #{#updateDTO.description} , nameuz = #{#updateDTO.name} where id= #{#updateDTO.id} returning true",nativeQuery = true)
+    boolean updateUZ(CollegesUpdateDTO updateDTO);
 
+    @Modifying
+    @Query(value = "update colleges set descriptionru = #{#updateDTO.description} , nameru = #{#updateDTO.name} where id= #{#updateDTO.id} returning true",nativeQuery = true)
+    boolean updateRU(CollegesUpdateDTO updateDTO);
 }

@@ -12,6 +12,7 @@ import uz.karkas.building.dto.base.DTO;
 @AllArgsConstructor
 public class CollegesUpdateDTO extends DTO {
 
+    private String language;
     private Integer id;
     private String name;
     private String description;

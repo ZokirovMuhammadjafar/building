@@ -14,15 +14,18 @@ import uz.karkas.building.service.base.FileService;
 
 import uz.karkas.building.service.product.ProductServiceImpl;
 
+import java.io.File;
 import java.util.List;
 
 @RestController
 
 public class ProductController extends BaseController<ProductServiceImpl> {
 
+    private final FileService fileService;
 
     public ProductController(ProductServiceImpl service, FileService fileService) {
-        super(service, fileService);
+        super(service);
+        this.fileService=fileService;
     }
 
     @GetMapping(value = PATH + "/product/{id}")
@@ -51,6 +54,7 @@ public class ProductController extends BaseController<ProductServiceImpl> {
     public ResponseEntity<Data<List<ProductDTO>>>getAll() {
         return service.getAll();
     }
+
 
 
 

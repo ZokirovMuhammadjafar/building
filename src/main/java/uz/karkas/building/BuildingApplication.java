@@ -5,13 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
+import uz.karkas.building.config.swagger.ApiProperties;
 import uz.karkas.building.config.swagger.OpenApiProperties;
 
 import java.util.Locale;
 
 @SpringBootApplication
 @OpenAPIDefinition
-@EnableConfigurationProperties({OpenApiProperties.class})
+@EnableConfigurationProperties({OpenApiProperties.class, ApiProperties.class})
 public class BuildingApplication {
 
 

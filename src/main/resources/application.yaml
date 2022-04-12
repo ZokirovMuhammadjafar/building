@@ -34,3 +34,4 @@ path:
   api: /localhost:8080
   filePath: /uploads/building
   urlPath: /api/v1/
+
