@@ -30,8 +30,8 @@ public class ProductController extends BaseController<ProductServiceImpl> {
 
     @GetMapping(value = PATH + "/product/{id}")
     public ResponseEntity<Data<ProductDTO>> get(@RequestHeader("accept-language") String language, @PathVariable Integer id) {
-        service.setLang(language);
-        return service.get(id);
+
+        return service.get(id,language);
     }
 
     @PostMapping(value = PATH + "/product/create/")
@@ -42,8 +42,8 @@ public class ProductController extends BaseController<ProductServiceImpl> {
 
     @PutMapping (value = PATH + "/product/update")
     public ResponseEntity<Data<Boolean>> update(@RequestHeader("accept-language") String language,@RequestBody ProductUpdateDTO dto) {
-        service.setLang(language);
-        return service.update(dto);
+
+        return service.update(dto,language);
     }
     @DeleteMapping(value = PATH + "/product/delete/{id}")
     public ResponseEntity<Data<Void>>delete(@PathVariable Integer id) {
@@ -51,8 +51,8 @@ public class ProductController extends BaseController<ProductServiceImpl> {
     }
 
     @DeleteMapping(value = PATH + "/product/all")
-    public ResponseEntity<Data<List<ProductDTO>>>getAll() {
-        return service.getAll();
+    public ResponseEntity<Data<List<ProductDTO>>>getAll(@RequestHeader("accept-language") String language) {
+        return service.getAll(language);
     }
 
 

@@ -9,6 +9,7 @@ import uz.karkas.building.response.Data;
 import uz.karkas.building.service.base.AbstractService;
 import uz.karkas.building.validator.contact.ContactValidator;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ContactServiceImpl extends AbstractService<ContactRepository, ContactValidator> implements ContactService {
@@ -18,12 +19,12 @@ public class ContactServiceImpl extends AbstractService<ContactRepository, Conta
     }
 
     @Override
-    public ResponseEntity<Data<Integer>> create(ContactCreateDTO createDTO) {
+    public ResponseEntity<Data<Integer>> create(ContactCreateDTO createDTO) throws IOException {
         return null;
     }
 
     @Override
-    public ResponseEntity<Data<Boolean>> update(ContactUpdateDTO updateDTO) {
+    public ResponseEntity<Data<Boolean>> update(ContactUpdateDTO updateDTO, String language) {
         return null;
     }
 
@@ -33,12 +34,12 @@ public class ContactServiceImpl extends AbstractService<ContactRepository, Conta
     }
 
     @Override
-    public ResponseEntity<Data<ContactDTO>> get(Integer id) {
+    public ResponseEntity<Data<ContactDTO>> get(Integer id, String language) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Data<List<ContactDTO>>> getAll() {
+    public ResponseEntity<Data<List<ContactDTO>>> getAll(String language) {
         return null;
     }
 }
