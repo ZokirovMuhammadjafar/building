@@ -17,8 +17,8 @@ import java.util.List;
 @RestController
 public class CategoryController extends BaseController<CategoryServiceImpl>{
 
-    public CategoryController(CategoryServiceImpl service, FileService fileService) {
-        super(service, fileService);
+    public CategoryController(CategoryServiceImpl service) {
+        super(service);
     }
 
     @GetMapping(value = PATH + "/category/{id}")
@@ -35,8 +35,7 @@ public class CategoryController extends BaseController<CategoryServiceImpl>{
 
     @PutMapping (value = PATH + "/category/update")
     public ResponseEntity<Data<Boolean>> update(@RequestHeader("accept-language") String language, @RequestBody CategoryUpdateDTO dto) {
-        service.setLang(language);
-        return service.update(dto);
+        return service.update(dto, language);
     }
     @DeleteMapping(value = PATH + "/category/delete/{id}")
     public ResponseEntity<Data<Void>>delete(@PathVariable Integer id) {
@@ -44,18 +43,9 @@ public class CategoryController extends BaseController<CategoryServiceImpl>{
     }
 
     @DeleteMapping(value = PATH + "/category/all")
-    public ResponseEntity<Data<List<CategoryDTO>>> getAll() {
-        return service.getAll();
+    public ResponseEntity<Data<List<CategoryDTO>>> getAll(@RequestHeader("accept-language") String language) {
+        return service.getAll(language);
     }
 
-
-
-    @GetMapping(PATH+"/download/{filename:.+}")
-    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-        Resource file = fileService.load(filename);
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment;filename=\"" + file.getFilename() + "\"").body(file);
-
-    }
 
 }
