@@ -37,6 +37,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
     }
 
+
     @Override
     public ResponseEntity<Data<Integer>> create(ProductCreateDTO createDTO) {
         Integer pictureId = null;
@@ -51,6 +52,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
         return new ResponseEntity<>(new Data<>(save.getId()), HttpStatus.OK);
     }
 
+
     @Override
     public ResponseEntity<Data<Boolean>> update(ProductUpdateDTO updateDTO) {
         Boolean response;
@@ -62,6 +64,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
         return new ResponseEntity<>(new Data<>(response), HttpStatus.OK);
     }
 
+
     public void setLang(String lang) {
         if (lang.equalsIgnoreCase("uz")) {
             language = lang;
@@ -70,6 +73,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
         }
     }
 
+
     @Override
     public ResponseEntity<Data<Void>> delete(Integer id) {
         repository.findById(id).orElseThrow(RuntimeException::new/*()->{throw new NotFoundException("product not found");
@@ -77,6 +81,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
         repository.deleteById(id);
         return new ResponseEntity<>(new Data<>(null), HttpStatus.OK);
     }
+
 
     @Override
     public ResponseEntity<Data<ProductDTO>> get(Integer id) {
@@ -87,6 +92,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
         productDTO.setUrl(request.concat(api).concat(urlPath).concat("download/").concat(uploads.getPathName()));
         return new ResponseEntity<>(new Data<>(productDTO), HttpStatus.OK);
     }
+
 
     @Override
     public ResponseEntity<Data<List<ProductDTO>>> getAll() {

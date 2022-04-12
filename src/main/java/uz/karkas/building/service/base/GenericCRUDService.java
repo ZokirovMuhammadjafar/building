@@ -17,7 +17,7 @@ public interface GenericCRUDService<
 
     ResponseEntity<Data<K>> create(CD createDTO) throws IOException;
 
-    ResponseEntity<Data<Boolean>> update(UD updateDTO);
+    ResponseEntity<Data<Boolean>> update(UD updateDTO, String language);
 
     ResponseEntity<Data<Void>> delete(K id);
 }

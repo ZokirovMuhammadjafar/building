@@ -82,10 +82,6 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
     }
 
     @Override
-    public ResponseEntity<Data<CollegesDTO>> get(Integer id) {
-        return null;
-    }
-
     public ResponseEntity<Data<CollegesDTO>> get(Integer id, String language) {
         Optional<Colleges> get = repository.findById(id);
         if (get.isPresent()) {
@@ -102,11 +98,11 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
     }
 
     @Override
-    public ResponseEntity<Data<List<CollegesDTO>>> getAll() {
+    public ResponseEntity<Data<List<CollegesDTO>>> getAll(String language) {
         List<Colleges> all = repository.findAll();
         String concat = properties.getRequest().concat(properties.getApi()).concat(properties.getUrlPath()).concat("download/");
         List<CollegesDTO> colleges = all.stream().map(a -> {
-            CollegesDTO ru = a.get("ru");
+            CollegesDTO ru = a.get(language);
             Uploads uploads = service.get(a.getFileId());
             ru.setUrl(concat.concat(uploads.getPathName()));
             return ru;

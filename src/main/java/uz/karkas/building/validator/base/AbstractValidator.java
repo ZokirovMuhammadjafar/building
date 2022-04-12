@@ -2,6 +2,7 @@ package uz.karkas.building.validator.base;
 
 import uz.karkas.building.exception.validator.ValidationException;
 
+
 public abstract class AbstractValidator<CD, UD, K> implements BaseGenericValidator {
 
     public abstract void validateKey(K id) throws ValidationException;

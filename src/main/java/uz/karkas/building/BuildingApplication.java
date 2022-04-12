@@ -16,7 +16,6 @@ import java.util.Locale;
 public class BuildingApplication {
 
 
-
     public static void main(String[] args) {
 
         SpringApplication.run(BuildingApplication.class, args);

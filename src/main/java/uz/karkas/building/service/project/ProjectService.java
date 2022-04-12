@@ -1,6 +1,5 @@
 package uz.karkas.building.service.project;
 
-import uz.karkas.building.domain.Project;
 import uz.karkas.building.dto.project.ProjectCreateDTO;
 import uz.karkas.building.dto.project.ProjectDTO;
 import uz.karkas.building.dto.project.ProjectUpdateDTO;

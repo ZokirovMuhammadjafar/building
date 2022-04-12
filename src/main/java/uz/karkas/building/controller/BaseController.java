@@ -9,9 +9,9 @@ import uz.karkas.building.service.base.FileService;
 
 @Getter
 @RequiredArgsConstructor
-public abstract class BaseController<D extends BaseGenericService> {
+public abstract class BaseController<S extends BaseGenericService> {
 
-    protected final D service;
+    protected final S service;
 
 
 
