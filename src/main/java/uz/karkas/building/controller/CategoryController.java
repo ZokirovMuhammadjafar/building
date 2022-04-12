@@ -23,8 +23,7 @@ public class CategoryController extends BaseController<CategoryServiceImpl>{
 
     @GetMapping(value = PATH + "/category/{id}")
     public ResponseEntity<Data<CategoryDTO>> get(@RequestHeader("accept-language") String language, @PathVariable Integer id) {
-        service.setLang(language);
-        return service.get(id);
+        return service.get(id, language);
     }
 
     @PostMapping(value = PATH + "/category/create/")
