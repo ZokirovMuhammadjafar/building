@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl extends AbstractService<ProductRepository, ProductValidator> implements ProductService {
 
     private final FileService service;
-    private static String language = "ru";
     @Value("${path.request}")
     private String request;
     @Value("${path.api}")
@@ -54,7 +53,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
 
     @Override
-    public ResponseEntity<Data<Boolean>> update(ProductUpdateDTO updateDTO) {
+    public ResponseEntity<Data<Boolean>> update(ProductUpdateDTO updateDTO,String language) {
         Boolean response;
         if (language.equals("uz")) {
             response = repository.updateUZ(updateDTO);
@@ -65,13 +64,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     }
 
 
-    public void setLang(String lang) {
-        if (lang.equalsIgnoreCase("uz")) {
-            language = lang;
-        } else {
-            language = "ru";
-        }
-    }
+
 
 
     @Override
@@ -84,7 +77,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
 
     @Override
-    public ResponseEntity<Data<ProductDTO>> get(Integer id) {
+    public ResponseEntity<Data<ProductDTO>> get(Integer id,String language) {
         Product product = repository.findById(id).orElseThrow(RuntimeException::new);
         ProductDTO productDTO = product.get(language);
         Uploads uploads = service.get(product.getFileId());
@@ -95,11 +88,11 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
 
     @Override
-    public ResponseEntity<Data<List<ProductDTO>>> getAll() {
+    public ResponseEntity<Data<List<ProductDTO>>> getAll(String language) {
         String concat = request.concat(api).concat(urlPath).concat("download/");
         List<Product> all = repository.findAll();
         List<ProductDTO> products = all.stream().map(a -> {
-            ProductDTO ru = a.get("ru");
+            ProductDTO ru = a.get(language);
             Uploads uploads = service.get(a.getFileId());
             ru.setUrl(concat.concat(uploads.getPathName()));
             return ru;

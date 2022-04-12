@@ -56,9 +56,9 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
 
     @Transactional
     @Override
-    public ResponseEntity<Data<Boolean>> update(CollegesUpdateDTO updateDTO) {
+    public ResponseEntity<Data<Boolean>> update(CollegesUpdateDTO updateDTO,String lang) {
         boolean ans;
-        if (updateDTO.getLanguage().equals("uz")) {
+        if (lang.equals("uz")) {
             ans = repository.updateUZ(updateDTO);
         } else {
             ans = repository.updateRU(updateDTO);

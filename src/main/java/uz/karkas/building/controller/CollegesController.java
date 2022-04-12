@@ -31,8 +31,7 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
 
     @PutMapping(PATH + "/colleges/update")
     public ResponseEntity<Data<Boolean>> update(@RequestBody @Valid CollegesUpdateDTO dto, @RequestHeader("accept-language") String language) {
-        dto.setLanguage(language);
-        return service.update(dto);
+        return service.update(dto,language);
 
     }
 
