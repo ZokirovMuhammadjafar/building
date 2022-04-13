@@ -1,4 +1,10 @@
 
+logging:
+  level:
+    org.zalando.logbook: TRACE
+logbook:
+  exclude: /api/v1/auth/**
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -9,7 +15,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         form_sql: true
@@ -29,9 +35,10 @@ springdoc:
   api-docs:
     path: /api-docs
 
+
 path:
   request: http:/
   api: /localhost:8080
-  filePath: /uploads/building
-  urlPath: /api/v1/
+  file-path: /uploads/building
+  url-path: /api/v1/
 

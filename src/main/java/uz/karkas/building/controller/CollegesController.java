@@ -24,7 +24,7 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
         return service.get(id, language);
     }
 
-    @PostMapping(PATH + "/colleges/create}")
+    @PostMapping(PATH + "/colleges/create")
     public ResponseEntity<Data<Integer>> create(@RequestBody @Valid CollegesCreateDTO dto) {
         return service.create(dto);
     }

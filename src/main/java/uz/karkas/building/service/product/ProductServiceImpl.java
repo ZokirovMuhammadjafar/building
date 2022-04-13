@@ -27,7 +27,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     private String request;
     @Value("${path.api}")
     private String api;
-    @Value("${path.urlPath}")
+    @Value("${path.url-path}")
     private String urlPath;
 
     protected ProductServiceImpl(ProductValidator validator, ProductRepository repository, FileService service) {
