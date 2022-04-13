@@ -1,5 +1,6 @@
 package uz.karkas.building.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.karkas.building.dto.colleges.CollegesCreateDTO;
@@ -24,8 +25,8 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
         return service.get(id, language);
     }
 
-    @PostMapping(PATH + "/colleges/create}")
-    public ResponseEntity<Data<Integer>> create(@RequestBody @Valid CollegesCreateDTO dto) {
+    @RequestMapping(value = PATH  + "/colleges/create",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},method = RequestMethod.POST)
+    public ResponseEntity<Data<Integer>> create( @Valid CollegesCreateDTO dto) {
         return service.create(dto);
     }
 

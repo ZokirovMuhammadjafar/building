@@ -11,7 +11,9 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
+
 public class ProductCreateDTO extends DTO {
+
 
 //    @Size(min = 5,max = 50)
     private String nameUZ;
