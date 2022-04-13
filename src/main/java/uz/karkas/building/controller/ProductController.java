@@ -1,24 +1,20 @@
 package uz.karkas.building.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import uz.karkas.building.dto.product.ProductCreateDTO;
 import uz.karkas.building.dto.product.ProductDTO;
 import uz.karkas.building.dto.product.ProductUpdateDTO;
 import uz.karkas.building.response.Data;
 import uz.karkas.building.service.base.FileService;
-
 import uz.karkas.building.service.product.ProductServiceImpl;
 
-import java.io.File;
 import java.util.List;
 
 @RestController
-
 public class ProductController extends BaseController<ProductServiceImpl> {
 
     private final FileService fileService;
@@ -35,7 +31,7 @@ public class ProductController extends BaseController<ProductServiceImpl> {
     }
 
     @PostMapping(value = PATH + "/product/create/")
-    public ResponseEntity<Data<Integer>> create( ProductCreateDTO dto) {
+    public ResponseEntity<Data<Integer>> create(ProductCreateDTO dto) {
         return service.create(dto);
     }
 
