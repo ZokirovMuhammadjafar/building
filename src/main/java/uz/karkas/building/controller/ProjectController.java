@@ -11,6 +11,7 @@ import uz.karkas.building.service.project.ProjectServiceImpl;
 import javax.validation.Valid;
 import java.util.List;
 
+@RestController
 public class ProjectController extends BaseController<ProjectServiceImpl> {
 
     public ProjectController(ProjectServiceImpl service) {
@@ -22,7 +23,7 @@ public class ProjectController extends BaseController<ProjectServiceImpl> {
         return service.get(id, language);
     }
 
-    @PostMapping(PATH + "/project/create}")
+    @PostMapping(PATH + "/project/create")
     public ResponseEntity<Data<Integer>> create(@RequestBody @Valid ProjectCreateDTO dto) {
         return service.create(dto);
     }

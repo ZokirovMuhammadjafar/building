@@ -2,6 +2,7 @@ package uz.karkas.building.service.project;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import uz.karkas.building.config.swagger.ApiProperties;
 import uz.karkas.building.domain.Project;
 import uz.karkas.building.domain.Uploads;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class ProjectServiceImpl extends AbstractService<ProjectRepository, ProjectValidator> implements ProjectService {
 
     private final FileService service;
