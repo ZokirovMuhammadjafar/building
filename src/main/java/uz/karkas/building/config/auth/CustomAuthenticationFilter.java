@@ -17,17 +17,14 @@ import uz.karkas.building.response.ApiErrorDto;
 import uz.karkas.building.response.Data;
 import uz.karkas.building.utils.JwtUtils;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Date;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;

@@ -21,6 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 import uz.karkas.building.domain.AuthUser;
 import uz.karkas.building.dto.auth.AuthUserDto;
 import uz.karkas.building.dto.auth.SessionDto;
+import uz.karkas.building.enums.Role;
 import uz.karkas.building.exception.UserAlreadyTaken;
 import uz.karkas.building.repository.AuthRepository;
 import uz.karkas.building.response.ApiErrorDto;
@@ -87,6 +88,9 @@ private final ObjectMapper objectMapper;
         AuthUser user=new AuthUser();
         user.setUsername(dto.getUsername());
         user.setPassword(encoder.encode(dto.getPassword()));
+        user.setActive(true);
+        user.setBlock(false);
+        user.setRole(Role.ADMIN);
         try {
             Integer id = repository.save(user).getId();
             return new ResponseEntity<>(new Data<>(id),HttpStatus.OK);
