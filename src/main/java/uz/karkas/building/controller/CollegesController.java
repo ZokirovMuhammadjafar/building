@@ -19,7 +19,7 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
         super(service);
     }
 
-    @GetMapping(PATH + "/colleges/{id}")
+    @GetMapping(PATH + "/colleges/get/{id}")
     public ResponseEntity<Data<CollegesDTO>> get(@PathVariable Integer id, @RequestHeader("accept-language") String language) {
         return service.get(id, language);
     }
@@ -41,7 +41,7 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
         return service.delete(id);
     }
 
-    @GetMapping(PATH+"/colleges/getAll")
+    @GetMapping(PATH+"/colleges/all")
     public ResponseEntity<Data<List<CollegesDTO>>>getAll(@RequestHeader("accept-language") String language){
         return  service.getAll(language);
     }

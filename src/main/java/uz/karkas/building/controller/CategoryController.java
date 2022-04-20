@@ -21,7 +21,7 @@ public class CategoryController extends BaseController<CategoryServiceImpl>{
         super(service);
     }
 
-    @GetMapping(value = PATH + "/category/{id}")
+    @GetMapping(value = PATH + "/category/get/{id}")
     public ResponseEntity<Data<CategoryDTO>> get(@RequestHeader("accept-language") String language, @PathVariable Integer id) {
         return service.get(id, language);
     }

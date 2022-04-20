@@ -26,7 +26,7 @@ public class AuthController extends BaseController<AuthUserService> {
         return service.login(dto,request);
     }
 
-    @Secured(value = "SUPPERADMIN")
+    @Secured(value = "ADMIN")
     @RequestMapping(method = RequestMethod.POST,value = PATH+"/auth/create")
     public ResponseEntity<Data<Integer>>create(@RequestBody AuthUserDto dto){
         return service.create(dto);

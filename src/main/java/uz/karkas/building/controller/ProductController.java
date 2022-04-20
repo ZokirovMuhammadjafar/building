@@ -24,7 +24,7 @@ public class ProductController extends BaseController<ProductServiceImpl> {
         this.fileService=fileService;
     }
 
-    @GetMapping(value = PATH + "/product/{id}")
+    @GetMapping(value = PATH + "/product/get/{id}")
     public ResponseEntity<Data<ProductDTO>> get(@RequestHeader("accept-language") String language, @PathVariable Integer id) {
 
         return service.get(id,language);
