@@ -39,20 +39,15 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
     @Override
     @Transactional
     public ResponseEntity<Data<Integer>> create(CollegesCreateDTO createDTO) {
-        try {
-            Integer save = service.save(createDTO.getPicture());
-            Colleges colleges = new Colleges();
-            colleges.setDescriptionRU(createDTO.getDescriptionRU());
-            colleges.setDescriptionUZ(createDTO.getDescriptionUZ());
-            colleges.setFileId(save);
-            colleges.setNameRU(createDTO.getNameRU());
-            colleges.setNameUZ(createDTO.getNameUZ());
-            Integer id = repository.save(colleges).getId();
-            return new ResponseEntity<>(new Data<>(id), HttpStatus.OK);
-        } catch (IOException e) {
-            ApiErrorDto dto = ApiErrorDto.builder().status(HttpStatus.NOT_ACCEPTABLE.value()).message("not create").developerMessage(e.getMessage()).build();
-            return new ResponseEntity<>(new Data<>(dto),HttpStatus.OK);
-        }
+        service.get(createDTO.getPictureId());
+        Colleges colleges = new Colleges();
+        colleges.setDescriptionRU(createDTO.getDescriptionRU());
+        colleges.setDescriptionUZ(createDTO.getDescriptionUZ());
+        colleges.setFileId(createDTO.getPictureId());
+        colleges.setNameRU(createDTO.getNameRU());
+        colleges.setNameUZ(createDTO.getNameUZ());
+        Integer id = repository.save(colleges).getId();
+        return new ResponseEntity<>(new Data<>(id), HttpStatus.OK);
 
     }
 

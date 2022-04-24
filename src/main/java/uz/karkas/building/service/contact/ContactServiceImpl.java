@@ -1,6 +1,9 @@
 package uz.karkas.building.service.contact;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import uz.karkas.building.domain.Contact;
 import uz.karkas.building.dto.contact.ContactCreateDTO;
 import uz.karkas.building.dto.contact.ContactDTO;
 import uz.karkas.building.dto.contact.ContactUpdateDTO;
@@ -11,7 +14,10 @@ import uz.karkas.building.validator.contact.ContactValidator;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+@Service
 public class ContactServiceImpl extends AbstractService<ContactRepository, ContactValidator> implements ContactService {
 
     protected ContactServiceImpl(ContactValidator validator, ContactRepository repository) {
@@ -19,27 +25,38 @@ public class ContactServiceImpl extends AbstractService<ContactRepository, Conta
     }
 
     @Override
-    public ResponseEntity<Data<Integer>> create(ContactCreateDTO createDTO) throws IOException {
-        return null;
+    public ResponseEntity<Data<Integer>> create(ContactCreateDTO createDTO)  {
+        Contact contact = new Contact(createDTO.getFullName(), createDTO.getPhoneNumber(), createDTO.getEmail(), createDTO.getMessage());
+        Integer id = repository.save(contact).getId();
+        return new ResponseEntity<>(new Data<>(id), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Data<Boolean>> update(ContactUpdateDTO updateDTO, String language) {
-        return null;
+
+        boolean a=repository.updateUZ(updateDTO);
+
+        return new ResponseEntity<>(new Data<>(a),HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Data<Void>> delete(Integer id) {
-        return null;
+        repository.deleteById(id);
+        return new ResponseEntity<>(new Data<>(null),HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<Data<ContactDTO>> get(Integer id, String language) {
-        return null;
+        Optional<Contact> byId = repository.findById(id);
+        if(byId.isPresent()){
+            return new ResponseEntity<>(new Data<>(byId.get().get()),HttpStatus.OK);
+        }
+        throw new RuntimeException("not found");
     }
 
     @Override
     public ResponseEntity<Data<List<ContactDTO>>> getAll(String language) {
-        return null;
+        List<ContactDTO> collect = repository.findAllByOrderByIdDesc().stream().map(Contact::get).limit(10).collect(Collectors.toList());
+        return new ResponseEntity<>(new Data<>(collect),HttpStatus.OK);
     }
 }

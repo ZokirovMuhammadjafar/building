@@ -1,12 +1,10 @@
 package uz.karkas.building.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import uz.karkas.building.controller.BaseController;
 import uz.karkas.building.dto.auth.AuthUserDto;
@@ -26,10 +24,17 @@ public class AuthController extends BaseController<AuthUserService> {
         return service.login(dto,request);
     }
 
-    @Secured(value = "ADMIN")
+    @Secured(value = "SUPPERADMIN")
     @RequestMapping(method = RequestMethod.POST,value = PATH+"/auth/create")
     public ResponseEntity<Data<Integer>>create(@RequestBody AuthUserDto dto){
         return service.create(dto);
+    }
+
+    @Secured("SUPPERADMIN")
+    @RequestMapping(method = RequestMethod.DELETE,value = PATH+"/auth/delete/{id}")
+    public ResponseEntity<Void>  update (@PathVariable Integer id){
+        service.delete(id);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
 }

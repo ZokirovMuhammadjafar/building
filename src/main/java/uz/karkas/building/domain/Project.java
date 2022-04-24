@@ -28,11 +28,11 @@ public class Project {
 
     private Integer fileId;
 
-    public static Project create(ProjectCreateDTO createDTO, Integer pictureId) {
+    public static Project create(ProjectCreateDTO createDTO) {
         Project project=new Project();
         project.setDescriptionRU(createDTO.getDescriptionRU());
         project.setDescriptionUZ(createDTO.getDescriptionUZ());
-        project.setFileId(pictureId);
+        project.setFileId(createDTO.getPictureId());
         project.setTitleUZ(createDTO.getTitleUZ());
         project.setTitleRU(createDTO.getTitleRU());
         return project;

@@ -34,7 +34,9 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
 
     @Override
     public ResponseEntity<Data<Integer>> create(ProjectCreateDTO createDTO) {
-        return null;
+        Project project=Project.create(createDTO);
+        Project save = repository.save(project);
+        return new ResponseEntity<>(new Data<>(save.getId()),HttpStatus.OK);
     }
 
     @Override

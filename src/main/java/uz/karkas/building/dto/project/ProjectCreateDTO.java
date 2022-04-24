@@ -16,6 +16,6 @@ public class ProjectCreateDTO extends DTO {
     private String titleRU;
     private String descriptionUZ;
     private String descriptionRU;
-    private MultipartFile picturePath;
+    private Integer pictureId;
 
 }

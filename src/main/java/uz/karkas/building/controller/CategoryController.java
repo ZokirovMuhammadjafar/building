@@ -1,10 +1,9 @@
 package uz.karkas.building.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import uz.karkas.building.dto.category.CategoryCreateDTO;
 import uz.karkas.building.dto.category.CategoryDTO;
 import uz.karkas.building.dto.category.CategoryUpdateDTO;
@@ -12,13 +11,15 @@ import uz.karkas.building.response.Data;
 import uz.karkas.building.service.base.FileService;
 import uz.karkas.building.service.category.CategoryServiceImpl;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 public class CategoryController extends BaseController<CategoryServiceImpl>{
-
-    public CategoryController(CategoryServiceImpl service) {
+private final FileService fileService;
+    public CategoryController(CategoryServiceImpl service, FileService fileService) {
         super(service);
+        this.fileService = fileService;
     }
 
     @GetMapping(value = PATH + "/category/get/{id}")
@@ -45,6 +46,8 @@ public class CategoryController extends BaseController<CategoryServiceImpl>{
     public ResponseEntity<Data<List<CategoryDTO>>> getAll(@RequestHeader("accept-language") String language) {
         return service.getAll(language);
     }
+
+
 
 
 }

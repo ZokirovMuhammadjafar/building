@@ -1,26 +1,31 @@
 
 spring:
+#  datasource:
+#    url: jdbc:h2:mem:mydb
+#    username: sa
+#    password: pa
+#    driverClassName: org.h2.Driver
+
+
   datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
-
-
-  #  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/buildings
-#    username: postgres
-#    password: root123
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: jafar
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     properties:
       hibernate:
+
         form_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
   servlet:
     multipart:
       enabled: true
@@ -29,7 +34,7 @@ spring:
       max-request-size: 215MB
 
 server:
-  port: 8080
+  port: 9091
 
 springdoc:
   swagger-ui:
@@ -40,7 +45,8 @@ springdoc:
 
 path:
   request: http:/
-  api: /localhost:8080
+#  api: /54.242.152.78:9091
+  api: /localhost:9091
   file-path: /uploads/building
   url-path: /api/v1/
 

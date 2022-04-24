@@ -39,13 +39,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
     @Override
     public ResponseEntity<Data<Integer>> create(ProductCreateDTO createDTO) {
-        Integer pictureId = null;
-        try {
-            pictureId = service.save(createDTO.getPhoto());
-        } catch (IOException e) {
-            // TODO: 10/04/2022 appp error dto
-            e.printStackTrace();
-        }
+        Integer pictureId = service.get(createDTO.getPictureId()).getId();
         Product product = Product.create(createDTO, pictureId);
         Product save = repository.save(product);
         return new ResponseEntity<>(new Data<>(save.getId()), HttpStatus.OK);

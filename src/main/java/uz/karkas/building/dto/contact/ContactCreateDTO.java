@@ -10,9 +10,9 @@ import uz.karkas.building.dto.base.DTO;
 @AllArgsConstructor
 public class ContactCreateDTO extends DTO {
 
-    public String fullName;
-    public String phoneNumber;
-    public String email;
-    public String message;
+    private String fullName;
+    private String phoneNumber;
+    private String email;
+    private String message;
 
 }

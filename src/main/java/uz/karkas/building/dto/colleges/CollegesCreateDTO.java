@@ -16,6 +16,6 @@ public class CollegesCreateDTO extends DTO {
     private String descriptionUZ;
     private String nameRU;
     private String descriptionRU;
-    private MultipartFile picture;
+    private Integer pictureId;
 
 }

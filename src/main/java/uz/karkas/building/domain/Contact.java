@@ -1,13 +1,16 @@
 package uz.karkas.building.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import uz.karkas.building.dto.contact.ContactDTO;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
+
 public class Contact {
 
     @Id
@@ -21,4 +24,14 @@ public class Contact {
     private String message;
 
 
+    public Contact(String fullName, String phoneNumber, String email, String message) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.message = message;
+    }
+
+    public ContactDTO get() {
+        return ContactDTO.builder().message(this.message).id(this.getId()).email(this.email).fullName(this.fullName).phoneNumber(this.phoneNumber).build();
+    }
 }

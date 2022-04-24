@@ -19,14 +19,15 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     public final static String[] WHITE_LIST = {
 
             "/api/login"
-            ,"/api/vi/category/get/**"
-            ,"/api/vi/category/all"
-            ,"/api/vi/colleges/get/**"
-            ,"/api/vi/colleges/all"
-            ,"/api/vi/product/get/**"
-            ,"/api/vi/product/all"
-            ,"/api/vi/project/get/**"
-            ,"/api/vi/project/all"
+            ,"/api/v1/download/**"
+            ,"/api/v1/category/get/**"
+            ,"/api/v1/category/all"
+            ,"/api/v1/colleges/get/**"
+            ,"/api/v1/colleges/all"
+            ,"/api/v1/product/get/**"
+            ,"/api/v1/product/all"
+            ,"/api/v1/project/get/**"
+            ,"/api/v1/project/all"
             ,"/api/v1/auth/login"
             ,"/swagger-ui/**",
             "/api/docs/**"

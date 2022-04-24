@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.context.request.WebRequest;
+import uz.karkas.building.config.swagger.ApiProperties;
 import uz.karkas.building.domain.AuthUser;
 import uz.karkas.building.dto.auth.AuthUserDto;
 import uz.karkas.building.dto.auth.SessionDto;
@@ -31,18 +32,18 @@ import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
 
 @Service
 public class AuthUserService implements UserDetailsService ,BaseGenericService {
 
     private final AuthRepository repository;
     private final PasswordEncoder encoder;
+    private final ApiProperties properties;
 private final ObjectMapper objectMapper;
-    public AuthUserService(AuthRepository repository, PasswordEncoder encoder, ObjectMapper objectMapper) {
+    public AuthUserService(AuthRepository repository, PasswordEncoder encoder, ApiProperties properties, ObjectMapper objectMapper) {
         this.repository = repository;
         this.encoder = encoder;
+        this.properties = properties;
         this.objectMapper = objectMapper;
     }
 
@@ -60,8 +61,10 @@ private final ObjectMapper objectMapper;
         try {
 
             HttpClient httpclient = HttpClientBuilder.create().build();
+            System.out.println(properties.getRequest()+properties.getApi());
             HttpPost httppost = new
-                    HttpPost("http://localhost:8080/api/login");
+                    HttpPost(properties.getRequest()+properties.getApi()+"/api/login");
+
             byte[] bytes = objectMapper.writeValueAsBytes(dto);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -98,5 +101,9 @@ private final ObjectMapper objectMapper;
             throw new UserAlreadyTaken("username already taken");
         }
 
+    }
+
+    public void delete(Integer id) {
+        repository.deleteById(id);
     }
 }

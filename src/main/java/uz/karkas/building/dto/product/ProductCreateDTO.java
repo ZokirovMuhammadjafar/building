@@ -16,18 +16,22 @@ public class ProductCreateDTO extends DTO {
 
 
 //    @Size(min = 5,max = 50)
+    @NotBlank
     private String nameUZ;
 //    @Size(min = 5,max = 50)
+    @NotBlank
     private String nameRU;
 //    @Size(min = 10,max = 500)
+    @NotBlank
     private String descriptionUZ;
 //    @Size(min = 10,max = 500)
+    @NotBlank
     private String descriptionRU;
 
 
-//    @NotNull
+    @NotNull
     private Integer categoryId;
 
-    private MultipartFile photo;
+    private Integer pictureId;
 
 }

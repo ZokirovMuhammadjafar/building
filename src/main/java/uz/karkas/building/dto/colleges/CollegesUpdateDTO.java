@@ -16,6 +16,6 @@ public class CollegesUpdateDTO extends DTO {
     private Integer id;
     private String name;
     private String description;
-    private MultipartFile picture;
+    private Integer pictureId;
 
 }

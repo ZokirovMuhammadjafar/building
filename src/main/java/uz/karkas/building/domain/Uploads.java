@@ -1,14 +1,12 @@
 package uz.karkas.building.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+
+import lombok.Setter;
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -26,6 +24,13 @@ public class Uploads {
     private Long size;
 
     private String extension;
+
+    @Column(nullable = false)
+    private Integer fileId;
+
+
+
+
 
     public Uploads(String originalName, String pathName, Long size, String extension) {
         this.originalName = originalName;
