@@ -28,23 +28,11 @@ import java.util.Optional;
 public class FileService implements BaseGenericService {
 
 
-    private String PATH="/uploads/";
-    private final Path path=Paths.get(PATH);
+
+
     private final UploadsRepository repository;
 
 
-
-
-    @PostConstruct
-    private void init() {
-        if (!Files.exists(path)) {
-            try {
-                Files.createDirectories(path);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     public Integer save(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
@@ -84,25 +72,10 @@ public class FileService implements BaseGenericService {
 
     }
 
-    public Resource load(String filename) {
-        try {
-            Path root = path.resolve(filename);
 
-            Resource resource = new UrlResource(root.toUri());
-            if (resource.exists() || resource.isReadable()) {
-                return resource;
-            } else {
-                throw new RuntimeException("not read");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
 
     public Resource loads(Integer id){
             byte[] bytes=repository.take(id);
-//            ByteArrayResource arrayResource = new ByteArrayResource(bytes);
-//            File file=new File()
             InputStreamResource resource=new InputStreamResource(new ByteArrayInputStream(bytes));
 
 

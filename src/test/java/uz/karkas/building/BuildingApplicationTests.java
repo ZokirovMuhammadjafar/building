@@ -8,11 +8,10 @@ import uz.karkas.building.config.swagger.ApiProperties;
 @SpringBootTest
 class BuildingApplicationTests {
 
-    @Autowired
-    public ApiProperties properties;
+
     @Test
     void contextLoads() {
-        System.out.println(properties.getApi());
+
     }
 
 }

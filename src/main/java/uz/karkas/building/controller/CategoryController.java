@@ -1,5 +1,6 @@
 package uz.karkas.building.controller;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,7 @@ private final FileService fileService;
     }
     @DeleteMapping(value = PATH + "/category/delete/{id}")
     public ResponseEntity<Data<Void>>delete(@PathVariable Integer id) {
+
         return service.delete(id);
     }
 
