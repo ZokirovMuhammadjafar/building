@@ -44,7 +44,7 @@ private final FileService fileService;
         return service.delete(id);
     }
 
-    @DeleteMapping(value = PATH + "/category/all")
+    @GetMapping(value = PATH + "/category/all")
     public ResponseEntity<Data<List<CategoryDTO>>> getAll(@RequestHeader("accept-language") String language) {
         return service.getAll(language);
     }
