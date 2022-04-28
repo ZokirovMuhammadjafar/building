@@ -20,6 +20,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
             "/api/login"
             ,"/api/v1/download/**"
+            ,"/actuator/**"
             ,"/api/v1/category/get/**"
             ,"/api/v1/category/all"
             ,"/api/v1/colleges/get/**"
