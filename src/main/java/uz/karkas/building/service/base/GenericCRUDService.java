@@ -19,5 +19,5 @@ public interface GenericCRUDService<
 
     ResponseEntity<Data<Boolean>> update(UD updateDTO, String language);
 
-    ResponseEntity<Data<Void>> delete(K id);
+    ResponseEntity.HeadersBuilder delete(K id);
 }

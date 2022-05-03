@@ -31,7 +31,7 @@ public class Colleges {
         if(locale.equals("uz")){
             return  CollegesDTO.builder().id(this.id).description(this.descriptionUZ).name(this.nameUZ).build();
         }else {
-            return CollegesDTO.builder().description(this.descriptionRU).name(this.nameRU).build();
+            return CollegesDTO.builder().id(this.id).description(this.descriptionRU).name(this.nameRU).build();
         }
 
     }

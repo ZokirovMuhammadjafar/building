@@ -74,8 +74,8 @@ private final ObjectMapper objectMapper;
 
             JsonNode json_auth = objectMapper.readTree(EntityUtils.toString(response.getEntity()));
             JsonNode apiError = json_auth.get("apiError");
-            ApiErrorDto errorDto = objectMapper.readValue(apiError.toString(), ApiErrorDto.class);
-            if (errorDto==null) {
+
+            if (apiError==null) {
                 JsonNode node = json_auth.get("body");
                 SessionDto sessionDto = objectMapper.readValue(node.toString(), SessionDto.class);
                 return new ResponseEntity<>(new Data<>(sessionDto),HttpStatus.OK);

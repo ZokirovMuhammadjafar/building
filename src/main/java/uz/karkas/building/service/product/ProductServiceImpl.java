@@ -1,6 +1,7 @@
 package uz.karkas.building.service.product;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import uz.karkas.building.service.base.AbstractService;
 import uz.karkas.building.service.base.FileService;
 import uz.karkas.building.validator.product.ProductValidator;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,14 +49,15 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
 
     @Override
+    @Transactional
     public ResponseEntity<Data<Boolean>> update(ProductUpdateDTO updateDTO,String language) {
         Boolean response;
         if (language.equals("uz")) {
-            response = repository.updateUZ(updateDTO);
+             repository.updateUZ(updateDTO);
         } else {
-            response = repository.updateRU(updateDTO);
+            repository.updateRU(updateDTO);
         }
-        return new ResponseEntity<>(new Data<>(response), HttpStatus.OK);
+        return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);
     }
 
 
@@ -62,11 +65,11 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
 
     @Override
-    public ResponseEntity<Data<Void>> delete(Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(Integer id) {
         repository.findById(id).orElseThrow(RuntimeException::new/*()->{throw new NotFoundException("product not found");
         }*/);
         repository.deleteById(id);
-        return new ResponseEntity<>(new Data<>(null), HttpStatus.OK);
+        return ResponseEntity.noContent();
     }
 
 
@@ -84,7 +87,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     @Override
     public ResponseEntity<Data<List<ProductDTO>>> getAll(String language) {
         String concat = request.concat(api).concat(urlPath).concat("download/");
-        List<Product> all = repository.findAll();
+        List<Product> all = repository.findAllByOrderByIdDesc(Pageable.ofSize(10));
         List<ProductDTO> products = all.stream().map(a -> {
             ProductDTO ru = a.get(language);
             Uploads uploads = service.get(a.getFileId());

@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-
 public class Contact {
 
     @Id
@@ -29,6 +28,10 @@ public class Contact {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.message = message;
+    }
+
+    public Contact() {
+
     }
 
     public ContactDTO get() {

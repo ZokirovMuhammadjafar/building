@@ -45,7 +45,7 @@ public class ProductController extends BaseController<ProductServiceImpl> {
         return service.update(dto,language);
     }
     @DeleteMapping(value = PATH + "/product/delete/{id}")
-    public ResponseEntity<Data<Void>>delete(@PathVariable Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
         return service.delete(id);
     }
 

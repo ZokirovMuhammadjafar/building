@@ -14,6 +14,5 @@ public class ProjectUpdateDTO extends DTO {
     private Integer id;
     private String title;
     private String description;
-    private Resource picturePath;
 
 }

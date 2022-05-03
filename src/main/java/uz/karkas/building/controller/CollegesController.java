@@ -42,7 +42,7 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
     }
 
     @DeleteMapping(PATH + "/colleges/delete/{id}")
-    public ResponseEntity<Data<Void>> delete(@PathVariable Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
 
         return service.delete(id);
     }

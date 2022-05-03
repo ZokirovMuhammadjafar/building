@@ -1,5 +1,6 @@
 package uz.karkas.building.service.project;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import uz.karkas.building.service.base.AbstractService;
 import uz.karkas.building.service.base.FileService;
 import uz.karkas.building.validator.project.ProjectValidator;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,35 +36,33 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
 
     @Override
     public ResponseEntity<Data<Integer>> create(ProjectCreateDTO createDTO) {
-        Project project=Project.create(createDTO);
+        Project project = Project.create(createDTO);
         Project save = repository.save(project);
-        return new ResponseEntity<>(new Data<>(save.getId()),HttpStatus.OK);
+        return new ResponseEntity<>(new Data<>(save.getId()), HttpStatus.OK);
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Data<Boolean>> update(ProjectUpdateDTO updateDTO, String language) {
 
         boolean ans;
         if (language.equals("uz")) {
-            ans = repository.updateUZ(updateDTO);
+            repository.updateUZ(updateDTO.getDescription(), updateDTO.getTitle(), updateDTO.getId());
         } else {
-            ans = repository.updateRU(updateDTO);
+            repository.updateRU(updateDTO.getDescription(), updateDTO.getTitle(), updateDTO.getId());
         }
 
-        return new ResponseEntity<>(new Data<>(ans), HttpStatus.OK);
+        return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);
 
     }
 
     @Override
-    public ResponseEntity<Data<Void>> delete(Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(Integer id) {
         Optional<Project> get = repository.findById(id);
-        if (get.isPresent()) {
-            repository.deleteById(id);
-            return new ResponseEntity<>(new Data<>(null), HttpStatus.OK);
-        } else {
-            ApiErrorDto errorDto = ApiErrorDto.builder().status(HttpStatus.NOT_FOUND.value()).message("project not found").build();
-            return new ResponseEntity<>(new Data<>(errorDto), HttpStatus.OK);
-        }
+        Project project = get.orElseThrow(RuntimeException::new);
+        repository.deleteById(id);
+        return ResponseEntity.noContent();
+
 
     }
 
@@ -84,7 +84,7 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
 
     @Override
     public ResponseEntity<Data<List<ProjectDTO>>> getAll(String language) {
-        List<Project> all = repository.findAll();
+        List<Project> all = repository.findAllByOrderByIdDesc(Pageable.ofSize(10));
         String concat = properties.getRequest().concat(properties.getApi()).concat(properties.getUrlPath()).concat("download/");
         List<ProjectDTO> projectDTO = all.stream().map(a -> {
             ProjectDTO ru = a.get(language);

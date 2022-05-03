@@ -17,7 +17,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({ValidationException.class})
     public ResponseEntity<Data<ApiErrorDto>>valid(ValidationException ex, WebRequest request){
-
         ApiErrorDto path = ApiErrorDto.builder().developerMessage(ex.getStackTrace().toString()).message(ex.getMessage()).status(HttpStatus.CONFLICT.value()).path(request.getContextPath()).build();
         return new ResponseEntity<>(new Data<>(path),HttpStatus.OK);
     }
@@ -29,7 +28,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity<Data<ApiErrorDto>>run(RuntimeException e,WebRequest request){
-        ApiErrorDto path = ApiErrorDto.builder().developerMessage(e.getMessage()).status(HttpStatus.NOT_FOUND.value()).path(request.getContextPath()).build();
+            ApiErrorDto path = ApiErrorDto.builder().developerMessage(e.getMessage()).status(HttpStatus.NOT_FOUND.value()).path(request.getContextPath()).build();
         return new ResponseEntity<>(new Data<>(path), HttpStatus.OK);
     }
     @ExceptionHandler({UserAlreadyTaken.class})
@@ -39,7 +38,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler({UserNotFoundException.class})
     public ResponseEntity<Data<ApiErrorDto>>run(UserNotFoundException e,WebRequest request){
-        ApiErrorDto path = ApiErrorDto.builder().developerMessage(e.getMessage()).status(HttpStatus.NOT_FOUND.value()).path(request.getContextPath()).build();
+            ApiErrorDto path = ApiErrorDto.builder().developerMessage(e.getMessage()).status(HttpStatus.NOT_FOUND.value()).path(request.getContextPath()).build();
         return new ResponseEntity<>(new Data<>(path), HttpStatus.OK);
     }
 

@@ -1,5 +1,6 @@
 package uz.karkas.building.service.contact;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -40,9 +41,9 @@ public class ContactServiceImpl extends AbstractService<ContactRepository, Conta
     }
 
     @Override
-    public ResponseEntity<Data<Void>> delete(Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(Integer id) {
         repository.deleteById(id);
-        return new ResponseEntity<>(new Data<>(null),HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent();
     }
 
     @Override
@@ -56,7 +57,8 @@ public class ContactServiceImpl extends AbstractService<ContactRepository, Conta
 
     @Override
     public ResponseEntity<Data<List<ContactDTO>>> getAll(String language) {
-        List<ContactDTO> collect = repository.findAllByOrderByIdDesc().stream().map(Contact::get).limit(10).collect(Collectors.toList());
+        Pageable pageable=Pageable.ofSize(10);
+        List<ContactDTO> collect = repository.findAllByOrderByIdDesc(pageable).stream().map(Contact::get).limit(10).collect(Collectors.toList());
         return new ResponseEntity<>(new Data<>(collect),HttpStatus.OK);
     }
 }

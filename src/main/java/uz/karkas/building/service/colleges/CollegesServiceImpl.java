@@ -1,6 +1,9 @@
 package uz.karkas.building.service.colleges;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -56,25 +59,22 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
     public ResponseEntity<Data<Boolean>> update(CollegesUpdateDTO updateDTO,String lang) {
         boolean ans;
         if (lang.equals("uz")) {
-            ans = repository.updateUZ(updateDTO);
+         repository.updateUZ(updateDTO);
         } else {
-            ans = repository.updateRU(updateDTO);
+            repository.updateRU(updateDTO);
         }
 
-        return new ResponseEntity<>(new Data<>(ans), HttpStatus.OK);
+        return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);
 
     }
 
     @Override
-    public ResponseEntity<Data<Void>> delete(Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(Integer id) {
         Optional<Colleges> get = repository.findById(id);
-        if (get.isPresent()) {
-            repository.deleteById(id);
-            return new ResponseEntity<>(new Data<>(null), HttpStatus.OK);
-        } else {
-            ApiErrorDto errorDto = ApiErrorDto.builder().status(HttpStatus.NOT_FOUND.value()).message("colleges not found").build();
-            return new ResponseEntity<>(new Data<>(errorDto), HttpStatus.OK);
-        }
+        Colleges colleges = get.orElseThrow(RuntimeException::new);
+        repository.deleteById(id);
+        return ResponseEntity.noContent();
+
 
     }
 
@@ -96,7 +96,8 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
 
     @Override
     public ResponseEntity<Data<List<CollegesDTO>>> getAll(String language) {
-        List<Colleges> all = repository.findAll();
+        PageRequest request = PageRequest.ofSize(10);
+        List<Colleges> all = repository.findByOrderByIdDesc(request);
         String concat = properties.getRequest().concat(properties.getApi()).concat(properties.getUrlPath()).concat("download/");
         List<CollegesDTO> colleges = all.stream().map(a -> {
             CollegesDTO ru = a.get(language);

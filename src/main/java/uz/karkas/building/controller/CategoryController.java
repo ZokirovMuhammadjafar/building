@@ -39,7 +39,7 @@ private final FileService fileService;
         return service.update(dto, language);
     }
     @DeleteMapping(value = PATH + "/category/delete/{id}")
-    public ResponseEntity<Data<Void>>delete(@PathVariable Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
 
         return service.delete(id);
     }

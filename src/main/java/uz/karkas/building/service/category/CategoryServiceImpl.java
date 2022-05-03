@@ -1,5 +1,6 @@
 package uz.karkas.building.service.category;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -43,21 +44,21 @@ public class CategoryServiceImpl extends AbstractService<CategoryRepository, Cat
             throw new NotFoundException("NOT_FOUND_EXCEPTION");
         }
 
-        Boolean response;
+
         if (language.equals("uz")) {
-            response = repository.updateUZ(updateDTO);
+            repository.updateUZ(updateDTO);
         } else {
-            response = repository.updateRU(updateDTO);
+            repository.updateRU(updateDTO);
         }
-        return new ResponseEntity<>(new Data<>(response), HttpStatus.OK);
+        return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);
     }
 
 
     @Override
-    public ResponseEntity<Data<Void>> delete(Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(Integer id) {
         repository.findById(id).orElseThrow(RuntimeException::new);
         repository.deleteById(id);
-        return new ResponseEntity<>(new Data<>(null), HttpStatus.OK);
+        return ResponseEntity.noContent();
     }
 
 
@@ -70,7 +71,7 @@ public class CategoryServiceImpl extends AbstractService<CategoryRepository, Cat
 
     @Override
     public ResponseEntity<Data<List<CategoryDTO>>> getAll(String language) {
-        List<Category> category = repository.findAll();
+        List<Category> category = repository.findAllByOrderByIdDesc(Pageable.ofSize(10));
         List<CategoryDTO> projectDTO = category.stream().map(a -> {
             return a.get(language);
         }).collect(Collectors.toList());

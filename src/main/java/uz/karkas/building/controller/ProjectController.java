@@ -1,9 +1,7 @@
 package uz.karkas.building.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import uz.karkas.building.dto.project.ProjectCreateDTO;
 import uz.karkas.building.dto.project.ProjectDTO;
 import uz.karkas.building.dto.project.ProjectUpdateDTO;
@@ -12,19 +10,19 @@ import uz.karkas.building.service.base.FileService;
 import uz.karkas.building.service.project.ProjectServiceImpl;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
 public class ProjectController extends BaseController<ProjectServiceImpl> {
 
     private final FileService fileService;
+
     public ProjectController(ProjectServiceImpl service, FileService fileService) {
         super(service);
         this.fileService = fileService;
     }
 
-    @GetMapping(PATH + "/project/{id}")
+    @GetMapping(PATH + "/project/get/{id}")
     public ResponseEntity<Data<ProjectDTO>> get(@PathVariable Integer id, @RequestHeader("accept-language") String language) {
         return service.get(id, language);
     }
@@ -41,12 +39,12 @@ public class ProjectController extends BaseController<ProjectServiceImpl> {
     }
 
     @DeleteMapping(PATH + "/project/delete/{id}")
-    public ResponseEntity<Data<Void>> delete(@PathVariable Integer id) {
+    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
 
         return service.delete(id);
     }
 
-    @GetMapping(PATH + "/project/getAll")
+    @GetMapping(PATH + "/project/all")
     public ResponseEntity<Data<List<ProjectDTO>>> getAll(@RequestHeader("accept-language") String language) {
         return service.getAll(language);
     }

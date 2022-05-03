@@ -9,6 +9,7 @@ import uz.karkas.building.response.Data;
 import uz.karkas.building.service.contact.ContactService;
 import uz.karkas.building.service.contact.ContactServiceImpl;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,14 +20,10 @@ public class ContactController extends BaseController<ContactServiceImpl> {
     }
 
     @PostMapping(PATH+"/contect/create")
-    public ResponseEntity<Data<Integer>>create(@RequestBody ContactCreateDTO dto){
+    public ResponseEntity<Data<Integer>>create(@RequestBody  @Valid ContactCreateDTO dto){
         return service.create(dto);
     }
 
-    @PutMapping(PATH+"/contact/update")
-    public ResponseEntity<Data<Boolean>>update(@RequestBody ContactUpdateDTO dto){
-        return  service.update(dto,"");
-    }
 
     @GetMapping(PATH+"/contact/get/{id}")
     public ResponseEntity<Data<ContactDTO>>get(@PathVariable Integer id){
@@ -39,7 +36,7 @@ public class ContactController extends BaseController<ContactServiceImpl> {
     }
 
     @DeleteMapping(PATH+"/contact/delete/{id}")
-    public ResponseEntity<Data<Void>>delete(@PathVariable Integer id){
+    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id){
         return service.delete(id);
     }
 }

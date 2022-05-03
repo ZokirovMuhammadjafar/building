@@ -21,14 +21,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class FileService implements BaseGenericService {
-
-
-
+    private static String extensions="{jpg};{png};{PNG};{JPG}";
 
     private final UploadsRepository repository;
 
@@ -37,6 +36,7 @@ public class FileService implements BaseGenericService {
     public Integer save(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String extension = FilenameUtils.getExtension(originalFilename);
+        if(Objects.nonNull(extension)&&!extensions.contains(extension))throw new RuntimeException("image format not comfortable");
         String name = System.currentTimeMillis() + "." + extension;
         Integer integer=repository.savefile(file.getBytes());
         Uploads uploads = new Uploads(originalFilename, name, file.getSize(),extension);
