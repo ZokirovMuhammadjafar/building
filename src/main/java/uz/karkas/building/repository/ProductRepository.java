@@ -17,13 +17,18 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, Base
 
     @Transactional
     @Modifying
-    @Query(value = "update product  set descriptionuz = #{#updateDTO.getDescription()}, nameuz = #{#updateDTO.getName()} where id = #{#updateDTO.getId()}",nativeQuery = true)
-    void  updateUZ(ProductUpdateDTO updateDTO);
+    @Query(value = "update product  set descriptionuz = ?3, nameuz = ?2, category_id= ?4, file_id = ?5 where id = ?1",nativeQuery = true)
+    void  updateUZ(Integer id, String name, String description, Integer categoryId, Integer pictureId);
 
     @Transactional
     @Modifying
-    @Query(value = "update product set descriptionru = #{#updateDTO.getDescription()}, nameru = #{#updateDTO.getName()} where id = #{#updateDTO.getId()}",nativeQuery = true)
-    void updateRU(ProductUpdateDTO updateDTO);
+    @Query(value = "update product set descriptionru = ?3, nameru = ?2, category_id= ?4, file_id = ?5 where id = ?1",nativeQuery = true)
+    void updateRU(Integer id, String name, String description, Integer categoryId, Integer pictureId);
 
     List<Product>findAllByOrderByIdDesc(Pageable pageable);
+
+    @Transactional
+    @Modifying
+    @Query(value = "select * from product where category_id = ?1 order by category_id",nativeQuery = true)
+    List<Product>findAllByCategory(Integer categoryId);
 }

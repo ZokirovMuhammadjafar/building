@@ -19,7 +19,7 @@ public class ContactController extends BaseController<ContactServiceImpl> {
         super(service);
     }
 
-    @PostMapping(PATH+"/contect/create")
+    @PostMapping(PATH+"/contact/create")
     public ResponseEntity<Data<Integer>>create(@RequestBody  @Valid ContactCreateDTO dto){
         return service.create(dto);
     }

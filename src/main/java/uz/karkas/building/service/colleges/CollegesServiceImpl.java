@@ -59,9 +59,9 @@ public class CollegesServiceImpl extends AbstractService<CollegesRepository, Col
     public ResponseEntity<Data<Boolean>> update(CollegesUpdateDTO updateDTO,String lang) {
         boolean ans;
         if (lang.equals("uz")) {
-         repository.updateUZ(updateDTO);
+         repository.updateUZ(updateDTO.getId(), updateDTO.getName(), updateDTO.getDescription(), updateDTO.getPictureId());
         } else {
-            repository.updateRU(updateDTO);
+            repository.updateRU(updateDTO.getId(), updateDTO.getName(), updateDTO.getDescription(), updateDTO.getPictureId());
         }
 
         return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);

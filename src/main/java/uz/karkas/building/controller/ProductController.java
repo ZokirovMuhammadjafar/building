@@ -49,9 +49,9 @@ public class ProductController extends BaseController<ProductServiceImpl> {
         return service.delete(id);
     }
 
-    @DeleteMapping(value = PATH + "/product/all")
-    public ResponseEntity<Data<List<ProductDTO>>>getAll(@RequestHeader("accept-language") String language) {
-        return service.getAll(language);
+    @GetMapping(value = PATH + "/product/all")
+    public ResponseEntity<Data<List<ProductDTO>>>getAll(@RequestHeader("accept-language") String language, Integer categoryId) {
+        return service.getAll(language, categoryId);
     }
 
 

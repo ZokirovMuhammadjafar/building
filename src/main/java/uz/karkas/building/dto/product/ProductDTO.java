@@ -17,6 +17,7 @@ public class ProductDTO extends DTO {
     private String name;
     private String description;
     private String url;
+    private Integer categoryId;
 
 
 }

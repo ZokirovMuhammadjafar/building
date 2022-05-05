@@ -44,11 +44,10 @@ public class CategoryServiceImpl extends AbstractService<CategoryRepository, Cat
             throw new NotFoundException("NOT_FOUND_EXCEPTION");
         }
 
-
         if (language.equals("uz")) {
-            repository.updateUZ(updateDTO);
+            repository.updateUZ(updateDTO.getId(), updateDTO.getName());
         } else {
-            repository.updateRU(updateDTO);
+            repository.updateRU(updateDTO.getId(), updateDTO.getName());
         }
         return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);
     }

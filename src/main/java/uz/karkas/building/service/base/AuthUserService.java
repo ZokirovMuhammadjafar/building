@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 import uz.karkas.building.config.swagger.ApiProperties;
 import uz.karkas.building.domain.AuthUser;
+import uz.karkas.building.dto.auth.AuthShowDto;
 import uz.karkas.building.dto.auth.AuthUserDto;
 import uz.karkas.building.dto.auth.SessionDto;
 import uz.karkas.building.enums.Role;
@@ -31,7 +32,9 @@ import uz.karkas.building.response.Data;
 import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class AuthUserService implements UserDetailsService ,BaseGenericService {
@@ -105,5 +108,19 @@ private final ObjectMapper objectMapper;
 
     public void delete(Integer id) {
         repository.deleteById(id);
+    }
+
+
+    public ResponseEntity<Data<List<AuthShowDto>>> getAll(){
+        List<AuthUser> users = repository.findAll();
+        List<AuthShowDto> dto = new ArrayList<>();
+        for (AuthUser user : users) {
+            AuthShowDto authShowDto = new AuthShowDto();
+            authShowDto.setId(user.getId());
+            authShowDto.setUsername(user.getUsername());
+            dto.add(authShowDto);
+        }
+
+        return new ResponseEntity(new Data<>(dto),HttpStatus.OK);
     }
 }
