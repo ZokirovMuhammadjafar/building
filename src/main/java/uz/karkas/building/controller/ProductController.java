@@ -17,9 +17,9 @@ import uz.karkas.building.service.product.ProductServiceImpl;
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin(value = "*")
 @RestController
 public class ProductController extends BaseController<ProductServiceImpl> {
-
 
 
     public ProductController(ProductServiceImpl service) {
@@ -27,11 +27,13 @@ public class ProductController extends BaseController<ProductServiceImpl> {
 
     }
 
+
     @GetMapping(value = PATH + "/product/get/{id}")
     public ResponseEntity<Data<ProductDTO>> get(@RequestHeader("accept-language") String language, @PathVariable Integer id) {
 
-        return service.get(id,language);
+        return service.get(id, language);
     }
+
 
     @PostMapping(value = PATH + "/product/create/")
     public ResponseEntity<Data<Integer>> create(ProductCreateDTO dto) {
@@ -39,21 +41,23 @@ public class ProductController extends BaseController<ProductServiceImpl> {
     }
 
 
-    @PutMapping (value = PATH + "/product/update")
-    public ResponseEntity<Data<Boolean>> update(@RequestHeader("accept-language") String language,@RequestBody ProductUpdateDTO dto) {
+    @PutMapping(value = PATH + "/product/update")
+    public ResponseEntity<Data<Boolean>> update(@RequestHeader("accept-language") String language, @RequestBody ProductUpdateDTO dto) {
 
-        return service.update(dto,language);
+        return service.update(dto, language);
     }
+
+
     @DeleteMapping(value = PATH + "/product/delete/{id}")
     public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
         return service.delete(id);
     }
 
-    @DeleteMapping(value = PATH + "/product/all")
-    public ResponseEntity<Data<List<ProductDTO>>>getAll(@RequestHeader("accept-language") String language) {
+
+    @GetMapping(value = PATH + "/product/all")
+    public ResponseEntity<Data<List<ProductDTO>>> getAll(@RequestHeader("accept-language") String language) {
         return service.getAll(language);
     }
-
 
 
 }

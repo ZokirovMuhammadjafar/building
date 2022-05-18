@@ -1,13 +1,11 @@
 package uz.karkas.building.service.colleges;
 
 import org.springframework.context.annotation.Lazy;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import uz.karkas.building.config.swagger.ApiProperties;
+import uz.karkas.building.controller.swagger.ApiProperties;
 import uz.karkas.building.domain.Colleges;
 import uz.karkas.building.domain.Uploads;
 import uz.karkas.building.dto.colleges.CollegesCreateDTO;
@@ -21,7 +19,6 @@ import uz.karkas.building.service.base.FileService;
 import uz.karkas.building.validator.colleges.CollegesValidator;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

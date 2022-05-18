@@ -14,10 +14,11 @@ import uz.karkas.building.service.category.CategoryServiceImpl;
 
 import java.io.IOException;
 import java.util.List;
-
+@CrossOrigin(value = "*")
 @RestController
-public class CategoryController extends BaseController<CategoryServiceImpl>{
-private final FileService fileService;
+public class CategoryController extends BaseController<CategoryServiceImpl> {
+    private final FileService fileService;
+
     public CategoryController(CategoryServiceImpl service, FileService fileService) {
         super(service);
         this.fileService = fileService;
@@ -29,15 +30,15 @@ private final FileService fileService;
     }
 
     @PostMapping(value = PATH + "/category/create/")
-    public ResponseEntity<Data<Integer>> create( CategoryCreateDTO dto) {
+    public ResponseEntity<Data<Integer>> create(CategoryCreateDTO dto) {
         return service.create(dto);
     }
 
-
-    @PutMapping (value = PATH + "/category/update")
+    @PutMapping(value = PATH + "/category/update")
     public ResponseEntity<Data<Boolean>> update(@RequestHeader("accept-language") String language, @RequestBody CategoryUpdateDTO dto) {
         return service.update(dto, language);
     }
+
     @DeleteMapping(value = PATH + "/category/delete/{id}")
     public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
 
@@ -48,8 +49,6 @@ private final FileService fileService;
     public ResponseEntity<Data<List<CategoryDTO>>> getAll(@RequestHeader("accept-language") String language) {
         return service.getAll(language);
     }
-
-
 
 
 }

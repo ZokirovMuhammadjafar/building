@@ -13,15 +13,18 @@ import uz.karkas.building.service.base.FileService;
 
 import java.io.IOException;
 
+@CrossOrigin(value = "*")
 @RestController
 public class FileController extends BaseController<FileService> {
 
     public FileController(FileService service) {
         super(service);
     }
-    @PostMapping(value = PATH+"/upload")
+
+    @CrossOrigin(value = "*")
+    @PostMapping(value = PATH + "/upload")
     @Secured("ADMIN")
-    public ResponseEntity<Data<Integer>> photo(@RequestParam("file") MultipartFile file){
+    public ResponseEntity<Data<Integer>> photo(@RequestParam("file") MultipartFile file) {
         try {
             Integer save = service.save(file);
             return new ResponseEntity<>(new Data<>(save), HttpStatus.OK);
@@ -31,8 +34,7 @@ public class FileController extends BaseController<FileService> {
     }
 
 
-
-    @GetMapping(PATH+"/download/{filename:.+}")
+    @GetMapping(PATH + "/download/{filename:.+}")
     public ResponseEntity<Resource> getFile(@PathVariable String filename) {
         Uploads uploads = service.get(filename);
         Resource file = service.loads(uploads.getFileId());

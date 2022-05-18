@@ -4,7 +4,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import uz.karkas.building.config.swagger.ApiProperties;
+import uz.karkas.building.controller.swagger.ApiProperties;
 import uz.karkas.building.domain.Project;
 import uz.karkas.building.domain.Uploads;
 import uz.karkas.building.dto.project.ProjectCreateDTO;

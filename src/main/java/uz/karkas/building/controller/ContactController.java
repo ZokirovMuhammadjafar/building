@@ -12,6 +12,7 @@ import uz.karkas.building.service.contact.ContactServiceImpl;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(value = "*")
 @RestController
 public class ContactController extends BaseController<ContactServiceImpl> {
 
@@ -19,24 +20,24 @@ public class ContactController extends BaseController<ContactServiceImpl> {
         super(service);
     }
 
-    @PostMapping(PATH+"/contect/create")
-    public ResponseEntity<Data<Integer>>create(@RequestBody  @Valid ContactCreateDTO dto){
+    @PostMapping(PATH + "/contect/create")
+    public ResponseEntity<Data<Integer>> create(@RequestBody @Valid ContactCreateDTO dto) {
         return service.create(dto);
     }
 
 
-    @GetMapping(PATH+"/contact/get/{id}")
-    public ResponseEntity<Data<ContactDTO>>get(@PathVariable Integer id){
-        return service.get(id,"");
+    @GetMapping(PATH + "/contact/get/{id}")
+    public ResponseEntity<Data<ContactDTO>> get(@PathVariable Integer id) {
+        return service.get(id, "");
     }
 
-    @GetMapping(PATH+"/contact/all")
-    public ResponseEntity<Data<List<ContactDTO>>>getAll(){
+    @GetMapping(PATH + "/contact/all")
+    public ResponseEntity<Data<List<ContactDTO>>> getAll() {
         return service.getAll("");
     }
 
-    @DeleteMapping(PATH+"/contact/delete/{id}")
-    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id){
+    @DeleteMapping(PATH + "/contact/delete/{id}")
+    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
         return service.delete(id);
     }
 }

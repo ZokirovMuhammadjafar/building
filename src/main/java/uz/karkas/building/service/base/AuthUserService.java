@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.context.request.WebRequest;
-import uz.karkas.building.config.swagger.ApiProperties;
+import uz.karkas.building.controller.swagger.ApiProperties;
 import uz.karkas.building.domain.AuthUser;
 import uz.karkas.building.dto.auth.AuthUserDto;
 import uz.karkas.building.dto.auth.SessionDto;

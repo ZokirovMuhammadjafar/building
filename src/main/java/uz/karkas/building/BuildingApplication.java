@@ -5,10 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import uz.karkas.building.config.swagger.ApiProperties;
-import uz.karkas.building.config.swagger.OpenApiProperties;
-
-import java.util.Locale;
+import uz.karkas.building.controller.swagger.ApiProperties;
+import uz.karkas.building.controller.swagger.OpenApiProperties;
 
 @SpringBootApplication
 @OpenAPIDefinition

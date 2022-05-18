@@ -14,7 +14,7 @@ import uz.karkas.building.service.colleges.CollegesServiceImpl;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
-
+@CrossOrigin(value = "*")
 @RestController
 public class CollegesController extends BaseController<CollegesServiceImpl> {
 
@@ -24,6 +24,7 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
         super(service);
         this.fileService = fileService;
     }
+
 
     @GetMapping(PATH + "/colleges/get/{id}")
     public ResponseEntity<Data<CollegesDTO>> get(@PathVariable Integer id, @RequestHeader("accept-language") String language) {
@@ -37,7 +38,7 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
 
     @PutMapping(PATH + "/colleges/update")
     public ResponseEntity<Data<Boolean>> update(@RequestBody @Valid CollegesUpdateDTO dto, @RequestHeader("accept-language") String language) {
-        return service.update(dto,language);
+        return service.update(dto, language);
 
     }
 
@@ -47,9 +48,10 @@ public class CollegesController extends BaseController<CollegesServiceImpl> {
         return service.delete(id);
     }
 
-    @GetMapping(PATH+"/colleges/all")
-    public ResponseEntity<Data<List<CollegesDTO>>>getAll(@RequestHeader("accept-language") String language){
-        return  service.getAll(language);
+
+    @GetMapping(PATH + "/colleges/all")
+    public ResponseEntity<Data<List<CollegesDTO>>> getAll(@RequestHeader("accept-language") String language) {
+        return service.getAll(language);
     }
 
 }

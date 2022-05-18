@@ -54,9 +54,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException, IOException {
-        User user = (User) authentication.getPrincipal();
-        Date expiryForAccessToken = JwtUtils.getExpireDate();
-        Date expiryForRefreshToken = JwtUtils.getExpireDateForRefreshToken();
+            User user = (User) authentication.getPrincipal();
+            Date expiryForAccessToken = JwtUtils.getExpireDate();
+            Date expiryForRefreshToken = JwtUtils.getExpireDateForRefreshToken();
         String accessToken = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(expiryForAccessToken)

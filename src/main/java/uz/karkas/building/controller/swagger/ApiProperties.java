@@ -1,4 +1,4 @@
-package uz.karkas.building.config.swagger;
+package uz.karkas.building.controller.swagger;
 
 import lombok.Getter;
 import lombok.Setter;
