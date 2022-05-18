@@ -15,13 +15,13 @@ public interface CollegesRepository extends JpaRepository<Colleges, Integer>, Ba
 
     @Modifying
     @Transactional
-    @Query(value = "update colleges set descriptionuz = #{#updateDTO.description} , nameuz = #{#updateDTO.name} where id= #{#updateDTO.id}",nativeQuery = true)
-   void updateUZ(CollegesUpdateDTO updateDTO);
+    @Query(value = "update colleges set descriptionuz = ?3 , nameuz = ?2, file_id= ?4 where id= ?1",nativeQuery = true)
+   void updateUZ(Integer id, String name, String description, Integer pictureId);
 
     @Modifying
     @Transactional
-    @Query(value = "update colleges set descriptionru = #{#updateDTO.description} , nameru = #{#updateDTO.name} where id= #{#updateDTO.id} ",nativeQuery = true)
-   void updateRU(CollegesUpdateDTO updateDTO);
+    @Query(value = "update colleges set descriptionru = ?3 , nameru = ?2, file_id= ?4 where id= ?1 ",nativeQuery = true)
+   void updateRU(Integer id, String name, String description, Integer pictureId);
 
     @Query(value = "from colleges order by id desc limit 10 ", nativeQuery = true)
     List<Colleges>findTen();

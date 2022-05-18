@@ -17,7 +17,7 @@ public class ContactCreateDTO extends DTO {
     private String fullName;
     @Pattern(regexp = "[+](998)[0-9]{9}")
     private String phoneNumber;
-    @Pattern(regexp = "[\\dA-Za-z]+@[a-z]{2,10}[.][a-z]{2,5}")
+//    @Pattern(regexp = "[\\dA-Za-z]+@[a-z]{2,10}[.][a-z]{2,5}")
     private String email;
     @NotBlank
     private String message;

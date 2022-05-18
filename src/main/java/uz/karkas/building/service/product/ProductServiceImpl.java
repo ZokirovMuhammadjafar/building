@@ -53,9 +53,9 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     public ResponseEntity<Data<Boolean>> update(ProductUpdateDTO updateDTO,String language) {
         Boolean response;
         if (language.equals("uz")) {
-             repository.updateUZ(updateDTO);
+             repository.updateUZ(updateDTO.getId(), updateDTO.getName(), updateDTO.getDescription(), updateDTO.getCategoryId(), updateDTO.getPictureId());
         } else {
-            repository.updateRU(updateDTO);
+            repository.updateRU(updateDTO.getId(), updateDTO.getName(), updateDTO.getDescription(), updateDTO.getCategoryId(), updateDTO.getPictureId());
         }
         return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);
     }
@@ -88,6 +88,18 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     public ResponseEntity<Data<List<ProductDTO>>> getAll(String language) {
         String concat = request.concat(api).concat(urlPath).concat("download/");
         List<Product> all = repository.findAllByOrderByIdDesc(Pageable.ofSize(10));
+        List<ProductDTO> products = all.stream().map(a -> {
+            ProductDTO ru = a.get(language);
+            Uploads uploads = service.get(a.getFileId());
+            ru.setUrl(concat.concat(uploads.getPathName()));
+            return ru;
+        }).collect(Collectors.toList());
+        return new ResponseEntity<>(new Data<>(products),HttpStatus.OK);
+    }
+
+    public ResponseEntity<Data<List<ProductDTO>>> getAll(String language, Integer categoryId) {
+        String concat = request.concat(api).concat(urlPath).concat("download/");
+        List<Product> all = repository.findAllByCategory(categoryId);
         List<ProductDTO> products = all.stream().map(a -> {
             ProductDTO ru = a.get(language);
             Uploads uploads = service.get(a.getFileId());

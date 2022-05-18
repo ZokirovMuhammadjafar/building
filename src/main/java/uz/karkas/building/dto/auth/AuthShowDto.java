@@ -4,13 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @Getter
 @Setter
-public class AuthUserDto implements Serializable {
+@NoArgsConstructor
+public class AuthShowDto {
+    private Integer id;
     private String username;
-    private String password;
-
-
 }

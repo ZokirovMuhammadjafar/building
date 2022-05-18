@@ -21,5 +21,8 @@ public class ProductUpdateDTO extends DTO {
 //    @Size(min = 10,max = 500)
     private String description;
 //    private Resource picture;
+    private Integer categoryId;
+
+    private Integer pictureId;
 
 }

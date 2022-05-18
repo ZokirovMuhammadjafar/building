@@ -45,11 +45,11 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     @Transactional
     public ResponseEntity<Data<Boolean>> update(ProjectUpdateDTO updateDTO, String language) {
 
-        boolean ans;
+
         if (language.equals("uz")) {
-            repository.updateUZ(updateDTO.getDescription(), updateDTO.getTitle(), updateDTO.getId());
+            repository.updateUZ(updateDTO.getDescription(), updateDTO.getTitle(), updateDTO.getId(), updateDTO.getPictureId());
         } else {
-            repository.updateRU(updateDTO.getDescription(), updateDTO.getTitle(), updateDTO.getId());
+            repository.updateRU(updateDTO.getDescription(), updateDTO.getTitle(), updateDTO.getId(), updateDTO.getPictureId());
         }
 
         return new ResponseEntity<>(new Data<>(true), HttpStatus.OK);

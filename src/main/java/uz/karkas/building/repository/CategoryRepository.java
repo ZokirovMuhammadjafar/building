@@ -14,13 +14,13 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Ba
 
     @Transactional
     @Modifying
-    @Query(value = "update category  set nameuz = #{#updateDTO.getName()} where id = #{#updateDTO.getId()}", nativeQuery = true)
-    void updateUZ(CategoryUpdateDTO updateDTO);
+    @Query(value = "update category  set nameuz = ?2 where id = ?1", nativeQuery = true)
+    void updateUZ(Integer id, String name);
 
     @Transactional
     @Modifying
-    @Query(value = "update category  set nameru = #{#updateDTO.getName()} where id = #{#updateDTO.getId()}", nativeQuery = true)
-    void updateRU(CategoryUpdateDTO updateDTO);
+    @Query(value = "update category  set nameru = ?2 where id = ?1", nativeQuery = true)
+    void updateRU(Integer id, String name);
 
     List<Category> findAllByOrderByIdDesc(Pageable pageable);
 }

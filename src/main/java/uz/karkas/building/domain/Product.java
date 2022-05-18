@@ -43,9 +43,9 @@ public class Product {
 
     public ProductDTO get(String locale){
         if(locale.equals("uz")){
-            return  ProductDTO.builder().id(this.id).description(this.descriptionUZ).name(this.nameUZ).build();
+            return  ProductDTO.builder().id(this.id).description(this.descriptionUZ).name(this.nameUZ).categoryId(this.categoryId).build();
         }else {
-            return ProductDTO.builder().id(this.id).description(this.descriptionRU).name(this.nameRU).build();
+            return ProductDTO.builder().id(this.id).description(this.descriptionRU).name(this.nameRU).categoryId(this.categoryId).build();
         }
 
     }
