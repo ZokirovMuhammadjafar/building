@@ -23,7 +23,7 @@ import java.util.List;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfigurer extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
+public class SecurityConfigurer extends WebSecurityConfigurerAdapter  {
     private static final String[] ALLOWED_METHODS = {"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"};
     private static final String[] ALLOWED_HEADERS = {
             "accept", "cache-Control", "authorization", "content-type", "x-auth-token", "cookie", "set-cookie",
@@ -31,11 +31,11 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter implements 
     };
 
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
-        registry.addMapping("/api/v1/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/api/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
+//        registry.addMapping("/api/v1/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
+//    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
