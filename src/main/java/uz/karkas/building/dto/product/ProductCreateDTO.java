@@ -1,37 +1,38 @@
 package uz.karkas.building.dto.product;
 
-import lombok.*;
-import org.springframework.core.io.Resource;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.Getter;
+import lombok.Setter;
 import uz.karkas.building.dto.base.DTO;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 
 public class ProductCreateDTO extends DTO {
 
-
-//    @Size(min = 5,max = 50)
     @NotBlank
+    @NotNull(message = "name uz not be null")
     private String nameUZ;
-//    @Size(min = 5,max = 50)
+
     @NotBlank
+    @NotNull(message = "name ru not be null")
     private String nameRU;
-//    @Size(min = 10,max = 500)
+
     @NotBlank
+    @NotNull(message = "description uz not be null")
     private String descriptionUZ;
-//    @Size(min = 10,max = 500)
+
     @NotBlank
+    @NotNull(message = "description ru not be null")
     private String descriptionRU;
 
-
     @NotNull
+    @NotNull(message = "category id not be null")
     private Integer categoryId;
 
+    @NotNull(message = "picture id not be null")
     private Integer pictureId;
 
 }

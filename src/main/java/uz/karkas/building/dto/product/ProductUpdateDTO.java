@@ -7,6 +7,7 @@ import org.springframework.core.io.Resource;
 import uz.karkas.building.dto.base.DTO;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -14,15 +15,19 @@ import javax.validation.constraints.Size;
 @Builder
 public class ProductUpdateDTO extends DTO {
 
-//    @NotBlank
+    @NotNull(message = "id not be null")
     private Integer id;
-//    @Size(min = 5,max = 50)
+
+    @NotNull(message = "name not be null")
     private String name;
-//    @Size(min = 10,max = 500)
+
+    @NotNull(message = "description not be null")
     private String description;
-//    private Resource picture;
+
+    @NotNull(message = "category id not be null")
     private Integer categoryId;
 
+    @NotNull(message = "picture id not be null")
     private Integer pictureId;
 
 }

@@ -30,7 +30,7 @@ public class CategoryController extends BaseController<CategoryServiceImpl> {
     }
 
     @PostMapping(value = PATH + "/category/create/")
-    public ResponseEntity<Data<Integer>> create(CategoryCreateDTO dto) {
+    public ResponseEntity<Data<Integer>> create(@RequestBody CategoryCreateDTO dto) {
         return service.create(dto);
     }
 
