@@ -10,6 +10,7 @@ import uz.karkas.building.dto.category.CategoryDTO;
 import uz.karkas.building.dto.category.CategoryUpdateDTO;
 import uz.karkas.building.exception.NotFoundException;
 import uz.karkas.building.repository.CategoryRepository;
+import uz.karkas.building.repository.ProductRepository;
 import uz.karkas.building.response.Data;
 import uz.karkas.building.service.base.AbstractService;
 import uz.karkas.building.validator.category.CategoryValidator;
@@ -22,9 +23,11 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl extends AbstractService<CategoryRepository, CategoryValidator> implements CategoryService {
 
+    private final ProductRepository productRepository;
 
-    protected CategoryServiceImpl(CategoryValidator validator, CategoryRepository repository) {
+    protected CategoryServiceImpl(CategoryValidator validator, CategoryRepository repository, ProductRepository productRepository) {
         super(validator, repository);
+        this.productRepository = productRepository;
     }
 
     // todo validator va check service yozish kerak kerak
@@ -57,6 +60,7 @@ public class CategoryServiceImpl extends AbstractService<CategoryRepository, Cat
     public ResponseEntity.HeadersBuilder<?> delete(Integer id) {
         repository.findById(id).orElseThrow(RuntimeException::new);
         repository.deleteById(id);
+        productRepository.updateAfterDeleteCategory(id);
         return ResponseEntity.noContent();
     }
 

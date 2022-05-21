@@ -31,14 +31,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter  {
             "content-disposition", "dnt", "if-modified-since", "keep-alive", "origin", "user-agent", "x-requested-with"
     };
 
-
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-//        return source;
-//    }
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -61,9 +53,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter  {
             , "/api/v1/colleges/get/**"
             , "/api/v1/colleges/all"
             , "/api/v1/product/get/**"
-            , "/api/v1/product/all"
+            , "/api/v1/product/all/**"
             , "/api/v1/project/get/**"
-            , "/api/v1/project/all"
+            , "/api/v1/project/all/"
             , "/api/v1/auth/login"
             , "/api/v1/contact/create"
             , "/swagger-ui/**",

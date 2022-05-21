@@ -1,5 +1,6 @@
 package uz.karkas.building.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.karkas.building.dto.project.ProjectCreateDTO;
@@ -44,9 +45,9 @@ public class ProjectController extends BaseController<ProjectServiceImpl> {
 
 
     @DeleteMapping(PATH + "/project/delete/{id}")
-    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
-
-        return service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.delete(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 

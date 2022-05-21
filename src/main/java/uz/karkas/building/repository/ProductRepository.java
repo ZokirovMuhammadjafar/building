@@ -31,4 +31,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, Base
     @Modifying
     @Query(value = "select * from product where category_id = ?1 order by category_id",nativeQuery = true)
     List<Product>findAllByCategory(Integer categoryId);
+
+    @Query(value = "update product set category_id = 0 where category_id = ?1", nativeQuery = true)
+    void updateAfterDeleteCategory(Integer categoryId);
+
 }

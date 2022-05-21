@@ -49,15 +49,21 @@ public class ProductController extends BaseController<ProductServiceImpl> {
 
 
     @DeleteMapping(value = PATH + "/product/delete/{id}")
-    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
-        return service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.delete(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 
-    @GetMapping(value = PATH + "/product/all")
-    public ResponseEntity<Data<List<ProductDTO>>> getAll(@RequestHeader("accept-language") String language) {
-        return service.getAll(language);
+    @GetMapping(value = PATH + "/product/all/{id}")
+    public ResponseEntity<Data<List<ProductDTO>>> getAll(@PathVariable Integer id, @RequestHeader("accept-language") String language) {
+        return service.getAll(language, id);
     }
+
+//    @GetMapping(value = PATH + "/product/all")
+//    public ResponseEntity<Data<List<ProductDTO>>> getAll(@PathVariable Integer categoryId, @RequestHeader("accept-language") String language) {
+//        return service.getAll(language, categoryId);
+//    }
 
 
 }

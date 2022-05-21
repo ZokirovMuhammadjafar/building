@@ -34,7 +34,7 @@ public class AuthController extends BaseController<AuthUserService> {
     @RequestMapping(method = RequestMethod.DELETE,value = PATH+"/auth/delete/{id}")
     public ResponseEntity<Void>  update (@PathVariable Integer id){
         service.delete(id);
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @RequestMapping(value = PATH+"/auth/getAll", method = RequestMethod.GET)

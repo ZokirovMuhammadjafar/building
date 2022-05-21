@@ -40,9 +40,9 @@ public class CategoryController extends BaseController<CategoryServiceImpl> {
     }
 
     @DeleteMapping(value = PATH + "/category/delete/{id}")
-    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
-
-        return service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.delete(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @GetMapping(value = PATH + "/category/all")

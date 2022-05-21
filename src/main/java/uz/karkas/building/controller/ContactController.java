@@ -1,5 +1,6 @@
 package uz.karkas.building.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.karkas.building.dto.contact.ContactCreateDTO;
@@ -28,7 +29,8 @@ public class ContactController extends BaseController<ContactServiceImpl> {
 
     @GetMapping(PATH + "/contact/get/{id}")
     public ResponseEntity<Data<ContactDTO>> get(@PathVariable Integer id) {
-        return service.get(id, "");
+        service.get(id, "");
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @GetMapping(PATH + "/contact/all")
