@@ -28,8 +28,8 @@ public class ProductCreateDTO extends DTO {
     @NotNull(message = "description ru not be null")
     private String descriptionRU;
 
-    @NotNull
     @NotNull(message = "category id not be null")
+    @NotNull
     private Integer categoryId;
 
     @NotNull(message = "picture id not be null")

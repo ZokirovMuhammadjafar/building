@@ -21,7 +21,7 @@ public class ContactController extends BaseController<ContactServiceImpl> {
         super(service);
     }
 
-    @PostMapping(PATH + "/contect/create")
+    @PostMapping(PATH + "/contact/create")
     public ResponseEntity<Data<Integer>> create(@RequestBody @Valid ContactCreateDTO dto) {
         return service.create(dto);
     }
@@ -39,7 +39,8 @@ public class ContactController extends BaseController<ContactServiceImpl> {
     }
 
     @DeleteMapping(PATH + "/contact/delete/{id}")
-    public ResponseEntity.HeadersBuilder<?> delete(@PathVariable Integer id) {
-        return service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.delete(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

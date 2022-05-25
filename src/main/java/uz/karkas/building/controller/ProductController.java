@@ -14,6 +14,7 @@ import uz.karkas.building.response.Data;
 import uz.karkas.building.service.base.FileService;
 import uz.karkas.building.service.product.ProductServiceImpl;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -36,13 +37,13 @@ public class ProductController extends BaseController<ProductServiceImpl> {
 
 
     @PostMapping(value = PATH + "/product/create/")
-    public ResponseEntity<Data<Integer>> create(ProductCreateDTO dto) {
+    public ResponseEntity<Data<Integer>> create(@RequestBody @Valid ProductCreateDTO dto) {
         return service.create(dto);
     }
 
 
     @PutMapping(value = PATH + "/product/update")
-    public ResponseEntity<Data<Boolean>> update(@RequestHeader("accept-language") String language, @RequestBody ProductUpdateDTO dto) {
+    public ResponseEntity<Data<Boolean>> update(@RequestHeader("accept-language") String language, @RequestBody @Valid ProductUpdateDTO dto) {
 
         return service.update(dto, language);
     }
