@@ -55,7 +55,7 @@ springdoc:
 path:
   request: http:/
 #  api: /54.242.152.78:9091
-  api: /localhost:9091
+  api: /172.105.103.209:9091
   file-path: /uploads/building
   url-path: /api/v1/
 
