@@ -36,8 +36,10 @@ public class FileService implements BaseGenericService {
 
 
     public Integer save(MultipartHttpServletRequest request) throws IOException {
+
         Iterator<String> fileNames = request.getFileNames();
         MultipartFile file = request.getFile(fileNames.next());
+
         String originalFilename = file.getOriginalFilename();
         String extension = FilenameUtils.getExtension(originalFilename);
         if(Objects.nonNull(extension)&&!extensions.contains(extension))throw new RuntimeException("image format not comfortable");

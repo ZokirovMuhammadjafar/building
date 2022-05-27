@@ -8,14 +8,14 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: jafar
+    password: root123
 
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         form_sql:  false
@@ -44,7 +44,7 @@ springdoc:
 path:
   request: http:/
   #  api: /54.242.152.78:9091
-  api: /localhost:9091
+  api: /172.105.103.209:9091
   file-path: /uploads/building
   url-path: /api/v1/
 
