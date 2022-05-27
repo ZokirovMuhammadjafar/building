@@ -16,21 +16,21 @@ import uz.karkas.building.controller.swagger.OpenApiProperties;
 import java.util.Collections;
 import java.util.List;
 
-//@Configuration
-//@ConditionalOnProperty(name = "springdoc.swagger-ui.enabled",  havingValue = "true", matchIfMissing = true)
+@Configuration
+@ConditionalOnProperty(name = "springdoc.swagger-ui.enabled",  havingValue = "true", matchIfMissing = true)
 public class  OpenApiConfig {
     private static final String BEARER_FORMAT = "JWT";
     private static final String SCHEME = "Bearer";
     private static final String SECURITY_SCHEME_NAME = "Security Scheme";
     private final OpenApiProperties openApiProperties;
 
-//    @Autowired
+    @Autowired
     public OpenApiConfig(OpenApiProperties openApiProperties) {
         this.openApiProperties = openApiProperties;
     }
 
 
-//    @Bean
+    @Bean
     public OpenAPI api() {
         return new OpenAPI()
                 .schemaRequirement(SECURITY_SCHEME_NAME, getSecurityScheme())
