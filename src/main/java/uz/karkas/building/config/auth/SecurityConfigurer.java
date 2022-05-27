@@ -2,6 +2,7 @@ package uz.karkas.building.config.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +18,6 @@ import uz.karkas.building.service.base.AuthUserService;
 
 import java.util.Arrays;
 import java.util.List;
-
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter  {
@@ -40,6 +40,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter  {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+
+
     public final static String[] WHITE_LIST = {
 
             "/api/login"

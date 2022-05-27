@@ -1,7 +1,10 @@
 package uz.karkas.building.controller;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNullApi;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +24,15 @@ public class AuthController extends BaseController<AuthUserService> {
         super(service);
     }
 
+
     @RequestMapping(method = RequestMethod.POST,value = PATH+"/auth/login")
     public ResponseEntity<Data<SessionDto>>login(@RequestBody AuthUserDto dto, WebRequest request){
         return service.login(dto,request);
     }
 
+
     @RequestMapping(method = RequestMethod.POST,value = PATH+"/auth/create")
+
     public ResponseEntity<Data<Integer>>create(@RequestBody AuthUserDto dto){
         return service.create(dto);
     }

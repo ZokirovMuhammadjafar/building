@@ -1,19 +1,14 @@
-
-
-
-
 spring:
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true
-
+#  mvc:
+#    hiddenmethod:
+#      filter:
+#        enabled: true
 
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: root123
+    password: jafar
 
 
   jpa:
@@ -23,8 +18,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-
-        form_sql: true
+        form_sql:  false
         jdbc:
           lob:
             non_contextual_creation: true
@@ -39,17 +33,18 @@ spring:
 server:
   port: 9091
 
+
 springdoc:
   swagger-ui:
     path: swagger-ui
   api-docs:
     path: /api/docs
-
+  show-actuator: true
 
 path:
   request: http:/
-#  api: /54.242.152.78:9091
-  api: /172.105.103.209:9091
+  #  api: /54.242.152.78:9091
+  api: /localhost:9091
   file-path: /uploads/building
   url-path: /api/v1/
 

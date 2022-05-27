@@ -28,7 +28,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, Base
     List<Product>findAllByOrderByIdDesc(Pageable pageable);
 
     @Transactional
-    @Modifying
     @Query(value = "select * from product where category_id = ?1 order by category_id",nativeQuery = true)
     List<Product>findAllByCategory(Integer categoryId);
 
