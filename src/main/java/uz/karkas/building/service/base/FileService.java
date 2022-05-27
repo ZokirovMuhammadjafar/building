@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import uz.karkas.building.domain.Uploads;
 import uz.karkas.building.exception.NotFoundException;
 import uz.karkas.building.repository.UploadsRepository;
@@ -21,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -33,7 +35,9 @@ public class FileService implements BaseGenericService {
 
 
 
-    public Integer save(MultipartFile file) throws IOException {
+    public Integer save(MultipartHttpServletRequest request) throws IOException {
+        Iterator<String> fileNames = request.getFileNames();
+        MultipartFile file = request.getFile(fileNames.next());
         String originalFilename = file.getOriginalFilename();
         String extension = FilenameUtils.getExtension(originalFilename);
         if(Objects.nonNull(extension)&&!extensions.contains(extension))throw new RuntimeException("image format not comfortable");

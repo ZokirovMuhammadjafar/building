@@ -3,12 +3,6 @@
 
 
 spring:
-#  datasource:
-#    url: jdbc:h2:mem:mydb
-#    username: sa
-#    password: pa
-#    driverClassName: org.h2.Driver
-
   mvc:
     hiddenmethod:
       filter:

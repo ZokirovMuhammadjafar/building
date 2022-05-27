@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import uz.karkas.building.domain.Uploads;
 import uz.karkas.building.response.Data;
 import uz.karkas.building.service.base.FileService;
@@ -24,9 +25,9 @@ public class FileController extends BaseController<FileService> {
     @CrossOrigin(value = "*")
     @PostMapping(value = PATH + "/upload")
     @Secured("ADMIN")
-    public ResponseEntity<Data<Integer>> photo(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Data<Integer>> photo(MultipartHttpServletRequest request) {
         try {
-            Integer save = service.save(file);
+            Integer save = service.save(request);
             return new ResponseEntity<>(new Data<>(save), HttpStatus.OK);
         } catch (IOException e) {
             throw new RuntimeException("file not uploaded");
