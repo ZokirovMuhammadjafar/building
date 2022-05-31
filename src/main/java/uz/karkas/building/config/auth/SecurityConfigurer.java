@@ -55,7 +55,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter  {
             , "/api/v1/product/get/**"
             , "/api/v1/product/all/**"
             , "/api/v1/project/get/**"
-            , "/api/v1/project/all/"
+            , "/api/v1/project/all"
             , "/api/v1/auth/login"
             , "/api/v1/contact/create"
             , "/swagger-ui/**",
