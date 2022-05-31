@@ -25,7 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, Base
     @Query(value = "update product set descriptionru = ?3, nameru = ?2, category_id= ?4, file_id = ?5 where id = ?1",nativeQuery = true)
     void updateRU(Integer id, String name, String description, Integer categoryId, Integer pictureId);
 
-    List<Product>findAllByOrderByIdDesc(Pageable pageable);
+    List<Product>findAllByOrderByIdDesc();
 
     @Transactional
     @Query(value = "select * from product where category_id = ?1 order by category_id",nativeQuery = true)

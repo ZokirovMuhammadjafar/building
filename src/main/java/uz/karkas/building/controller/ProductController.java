@@ -61,10 +61,10 @@ public class ProductController extends BaseController<ProductServiceImpl> {
         return service.getAll(language, id);
     }
 
-//    @GetMapping(value = PATH + "/product/all")
-//    public ResponseEntity<Data<List<ProductDTO>>> getAll(@PathVariable Integer categoryId, @RequestHeader("accept-language") String language) {
-//        return service.getAll(language, categoryId);
-//    }
+    @GetMapping(value = PATH + "/product/all")
+    public ResponseEntity<Data<List<ProductDTO>>> getAll(@RequestHeader("accept-language") String language) {
+        return service.getAll(language);
+    }
 
 
 }

@@ -87,7 +87,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     @Override
     public ResponseEntity<Data<List<ProductDTO>>> getAll(String language) {
         String concat = request.concat(api).concat(urlPath).concat("download/");
-        List<Product> all = repository.findAllByOrderByIdDesc(Pageable.ofSize(10));
+        List<Product> all = repository.findAllByOrderByIdDesc();
         List<ProductDTO> products = all.stream().map(a -> {
             ProductDTO ru = a.get(language);
             Uploads uploads = service.get(a.getFileId());

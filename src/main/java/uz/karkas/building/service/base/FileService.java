@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.*;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -82,7 +83,7 @@ public class FileService implements BaseGenericService {
 
     public Resource loads(Integer id){
             byte[] bytes=repository.take(id);
-            InputStreamResource resource=new InputStreamResource(new ByteArrayInputStream(bytes));
+             InputStreamResource resource=new InputStreamResource(new ByteArrayInputStream(bytes));
 
 
 //            FileSystemResource resource=new FileSystemResource()
