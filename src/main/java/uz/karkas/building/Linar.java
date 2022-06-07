@@ -18,8 +18,8 @@ public class Linar implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // TODO: 13/04/2022 create yaratish va structuraga solish
         AuthUserDto authUserDto = new AuthUserDto();
-        authUserDto.setUsername("admin");
-        authUserDto.setPassword("password");
+        authUserDto.setUsername("karkasjbiadmin");
+        authUserDto.setPassword("karkasjbi2022!");
        try {
            service.create(authUserDto);
        }catch (RuntimeException e){
